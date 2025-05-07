@@ -10,3 +10,7 @@ li {
     border : 0;
     float: left;
 }
+
+#calender th {
+    padding-right : 20px;
+}
