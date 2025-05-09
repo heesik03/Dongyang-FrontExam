@@ -7,16 +7,8 @@ const Header = () => {
             label : "홈",
         },
         {
-            link : "/login",
-            label : "로그인",
-        },
-        {
-            link : "/mypage",
-            label : "마이페이지",
-        },
-        {
-            link : "/signup",
-            label : "회원가입",
+            link : "/note",
+            label : "메모",
         },
     ]
 

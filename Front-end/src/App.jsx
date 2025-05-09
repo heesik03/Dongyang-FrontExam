@@ -4,9 +4,8 @@ import Header from "./componets/layouts/Header";
 import Footer from './componets/layouts/Footer';
 
 import Home from './pages/Home';
-import LogIn from './pages/LogIn';
-import MyPage from './pages/MyPage';
-import SignUp from './pages/SignUp';
+import Note from "./pages/Note";
+import NoteWrite from "./pages/NoteWrite";
 
 function App() {
   return (
@@ -14,9 +13,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="*" element={<Home />} /> 
-        <Route path='/login' element={<LogIn />} />
-        <Route path="/mypage" element={<MyPage />} /> 
-        <Route path='/signup' element={<SignUp />} />
+        <Route path="/note" element={<Note />} /> 
+        <Route path="/note/write" element={<NoteWrite />} /> 
       </Routes>
       <Footer />
     </>

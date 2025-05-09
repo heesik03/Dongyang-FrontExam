@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CalendarBody from "../componets/CalendarBody";
 
 function Home() {
     const now = new Date();
@@ -7,6 +8,7 @@ function Home() {
         month : now.getMonth()+1,
         day : now.getDate()
     })
+    const [firstWeek, setFirstWeek] = useState(new Date(currentDay.year, currentDay.month-1, 1).getDay()) // 첫날의 요일
     const [lastDay, setLastDay] = useState(new Date(currentDay.year, currentDay.month, 0).getDate()) // 선택한 월의 말일
     const weekList = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -23,6 +25,7 @@ function Home() {
             month=1;
         }
         setCurrentDay({year, month, day : 1});
+        setFirstWeek(new Date(year, month-1, 1).getDay())
         setLastDay(new Date(year, month, 0).getDate())
     }
 
@@ -38,27 +41,23 @@ function Home() {
             <p>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
             <button type="button" onClick={() => changeCurrentMonth(true)}>⬅️</button>
-            <table id="calender">
-                <thead>
-                <tr>
-                    {
-                        weekList.map(week => (
-                            <th scope="col" key={week}>{week}</th>
-                        ))
-                    }
-                </tr>
-                </thead>
-            </table>
-            {
-                Array.from({ length: lastDay }, (_, dayIndex) => ( // 배열 생성
-                    <span key={dayIndex} onClick={() => setCurrentDay({...currentDay, day : dayIndex + 1})}>
-                        {dayIndex + 1}\
-                    </span>
-                ))
-            }
             <br />
+            <table id="calendar">
+                <thead>
+                    <tr>
+                        {weekList.map(week => (
+                            <th key={week}>{week}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <CalendarBody
+                    lastDay={lastDay}
+                    firstWeek={firstWeek}
+                    currentDay={currentDay}
+                    setCurrentDay={setCurrentDay}
+                />
+            </table>
             <button type="button" onClick={() => changeCurrentMonth(false)}>➡️</button>   
-             
         </main>
     );
 }
