@@ -4,15 +4,23 @@ const CalendarBody = ({ firstWeek, lastDay, currentDay, setCurrentDay }) => {
     let cells = []; 
 
     for (let i = 0; i < totalCells; i++) {
+        let color = 'black';
         if (i < firstWeek) {
             cells.push(<td key={`empty-${i}`}>&nbsp;</td>); // 빈 칸
         } else {
             const day = i + 1 - firstWeek; // 날짜 계산
+
+            if (i % 7 === 0) {
+                color = 'red'; 
+            } else if (i % 7 === 6) {
+                color = 'blue';
+            }
+
             cells.push(
                 <td
                     key={`${day}일`}
                     onClick={() => setCurrentDay({ ...currentDay, day })}
-                    style={{ color: i % 7 === 0 && 'red' }}
+                    style={{ color }}
                 >
                     {day}
                 </td>

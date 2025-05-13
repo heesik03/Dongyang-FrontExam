@@ -14,3 +14,10 @@ li {
 #calendar th {
     padding-right : 20px;
 }
+
+td:hover {
+    cursor : pointer;
+    color : green;
+    text-decoration : underline;
+    text-decoration-color : gold;
+}
