@@ -1,23 +1,37 @@
+a {
+  text-decoration-line: none;
+  color : black;
+}
+
 ul {
     list-style:none;
     margin:0;
     padding:0;
 }
 
-li {
+header li { 
     margin: 0 16px 0 0;
     padding: 0 0 0 0;
     border : 0;
     float: left;
 }
 
-#calendar th {
-    padding-right : 20px;
+#calendar th, td {
+    padding-right : 2vw;
 }
 
-td:hover {
+.header-item:hover {
+    color : blue;
+    text-decoration: underline;
+}
+
+.calendar-item:hover {
     cursor : pointer;
     color : green;
     text-decoration : underline;
     text-decoration-color : gold;
+}
+
+.note-item:hover {
+    background :#EEEEEE;
 }

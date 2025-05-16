@@ -21,6 +21,7 @@ const CalendarBody = ({ firstWeek, lastDay, currentDay, setCurrentDay }) => {
                     key={`${day}일`}
                     onClick={() => setCurrentDay({ ...currentDay, day })}
                     style={{ color }}
+                    className="calendar-item"
                 >
                     {day}
                 </td>

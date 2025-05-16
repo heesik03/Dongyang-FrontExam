@@ -3,13 +3,13 @@ import CalendarBody from "../componets/CalendarBody";
 
 function Home() {
     const now = new Date();
-    const [currentDay, setCurrentDay] = useState({ // 캘린더의 현재 날짜
+    const [ currentDay, setCurrentDay ] = useState({ // 캘린더의 현재 날짜
         year : now.getFullYear(),
         month : now.getMonth()+1,
         day : now.getDate()
     })
-    const [firstWeek, setFirstWeek] = useState(new Date(currentDay.year, currentDay.month-1, 1).getDay()) // 첫날의 요일
-    const [lastDay, setLastDay] = useState(new Date(currentDay.year, currentDay.month, 0).getDate()) // 선택한 월의 말일
+    const [ firstWeek, setFirstWeek ] = useState(new Date(currentDay.year, currentDay.month-1, 1).getDay()) // 첫날의 요일
+    const [ lastDay, setLastDay ] = useState(new Date(currentDay.year, currentDay.month, 0).getDate()) // 선택한 월의 말일
     const weekList = ['일', '월', '화', '수', '목', '금', '토'];
 
     const changeCurrentMonth = move => {
@@ -30,34 +30,38 @@ function Home() {
     }
 
     return (
-        <main>
+        <main className="container">
             <h1>메인페이지</h1>
-            <p>여기에 캘린더를 둡니다</p>
-            <p>뉴스기사 크롤링도 둡니다</p>  
-            <br />
+            <section>
+                <p>여기에 캘린더를 둡니다</p>
+                <br />
 
-            <p>{`오늘 날짜 : ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</p>
-            <p>{`선택한 날짜 : ${currentDay.year}년 ${currentDay.month}월 ${currentDay.day}일`}</p>
-            <p>{`${currentDay.year}년 ${currentDay.month}월`}</p>
+                <p>{`오늘 날짜 : ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</p>
+                <p>{`선택한 날짜 : ${currentDay.year}년 ${currentDay.month}월 ${currentDay.day}일`}</p>
+                <p>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
-            <button type="button" onClick={() => changeCurrentMonth(true)}>⬅️</button>
-            <br />
-            <table id="calendar">
-                <thead>
-                    <tr>
-                        {weekList.map(week => (
-                            <th key={week}>{week}</th>
-                        ))}
-                    </tr>
-                </thead>
-                <CalendarBody
-                    lastDay={lastDay}
-                    firstWeek={firstWeek}
-                    currentDay={currentDay}
-                    setCurrentDay={setCurrentDay}
-                />
-            </table>
-            <button type="button" onClick={() => changeCurrentMonth(false)}>➡️</button>   
+                <button type="button" onClick={() => changeCurrentMonth(true)}>⬅️</button>
+                <br />
+                <table id="calendar" style={{textAlign : "center"}}>
+                    <thead>
+                        <tr>
+                            {weekList.map(week => (
+                                <th key={week}>{week}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <CalendarBody
+                        lastDay={lastDay}
+                        firstWeek={firstWeek}
+                        currentDay={currentDay}
+                        setCurrentDay={setCurrentDay}
+                    />
+                </table>
+                <button type="button" onClick={() => changeCurrentMonth(false)}>➡️</button>   
+            </section>
+            <section>
+                <p>뉴스기사 크롤링을 둡니다.</p>  
+            </section>
         </main>
     );
 }

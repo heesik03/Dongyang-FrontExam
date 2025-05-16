@@ -5,6 +5,7 @@ import Footer from './componets/layouts/Footer';
 
 import Home from './pages/Home';
 import Note from "./pages/Note";
+import NoteRead from "./pages/NoteRead";
 import NoteWrite from "./pages/NoteWrite";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="*" element={<Home />} /> 
         <Route path="/note" element={<Note />} /> 
+        <Route path="/note/:id" element={<NoteRead />} /> 
         <Route path="/note/write" element={<NoteWrite />} /> 
       </Routes>
       <Footer />

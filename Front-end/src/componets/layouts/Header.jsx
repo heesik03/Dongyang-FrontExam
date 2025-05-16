@@ -14,14 +14,15 @@ const Header = () => {
 
     return (
         <header>
-            <ul>
-            {
-                headerList.map( list => (
-                    <Linkli key={list.label} link={list.link} label={list.label} />
-                ))
-            }
-            </ul>
-            <br />
+            <nav className="navbar">
+                <ul>
+                {
+                    headerList.map( list => (
+                        <Linkli key={list.label} link={list.link} label={list.label} />
+                    ))
+                }
+                </ul>
+            </nav>
             <hr />
         </header>
     )
