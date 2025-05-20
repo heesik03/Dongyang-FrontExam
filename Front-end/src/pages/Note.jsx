@@ -18,6 +18,16 @@ function Note() {
         }
     }
 
+    const deleteNote = async(id) => {
+        try {
+            await axios.delete(`http://localhost:3000/notes/${id}`);
+            setNoteList(noteList.filter(note => note.id !== id));
+        } catch (error) {
+            console.error(`deleteNote Error : ${error}`);
+            alert("사이트 오류로 노트 삭제에 실패했습니다.");
+        }
+    }
+
     useEffect(() => {
         getNoteList();
     }, []);
@@ -38,9 +48,14 @@ function Note() {
                     noteList?.map(note => (
                         <li key={note.id} className="note-item">
                             <Link to={`/note/${note.id}`}>
-                                <p>{note.title}</p>
+                                <p>{note.password && "🔒"} {note.title}</p>
                                 <small>{note.timestamp}</small>
                             </Link>
+                            <button className="btn btn-outline-danger btn-sm ms-2"
+                                type="button" 
+                                onClick={() => deleteNote(note.id)} >
+                                X
+                            </button>
                             <hr />
                         </li>
                     ))

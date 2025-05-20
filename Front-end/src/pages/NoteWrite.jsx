@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useTitle from "../hooks/useTitle";
+import NotePasswordArea from "../componets/note/NotePasswordArea";
 
 function NoteWrite() {
     const [ title, setTitle ] = useState("")
     const [ content, setContent ] = useState("")
+    const [ password, setPassword ] = useState("");
+    const [ isLocked, setIsLocked ] = useState(false);
     const navigate = useNavigate();
     const koreaTime = new Date().toLocaleString("ko-KR", {
         timeZone: "Asia/Seoul",
@@ -16,9 +19,10 @@ function NoteWrite() {
     const onSubmitNote = async() => {
         try {
             await axios.post('http://localhost:3000/notes', {
-            title : title,
-            content : content,
-            timestamp : koreaTime
+                title,
+                content,
+                password : password==="" ? null : password,
+                timestamp : koreaTime
             })
             alert("메모 작성에 성공했습니다!");
             navigate("/note");
@@ -52,7 +56,24 @@ function NoteWrite() {
                 onChange={(e) => {setContent(e.target.value)}} />
             <br />
 
-            <button type="submit" onClick={onSubmitNote}>제출</button>
+            <div className="form-check form-switch">
+                <input className="form-check-input" 
+                    type="checkbox" 
+                    id="lock-switch" 
+                    onChange={() => setIsLocked(isLock => !isLock)}
+                />
+                <label className="form-check-label" htmlFor="lock-switch">메모 잠금</label>
+            </div>
+            <br />
+            {
+                isLocked && <NotePasswordArea id={"note-password"} password={password} setPassword={setPassword} />
+            }
+
+            <button className="btn btn-primary" 
+                type="submit" 
+                onClick={onSubmitNote} >
+                제출
+            </button>
         </main>
     )
 }

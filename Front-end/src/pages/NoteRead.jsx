@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import useTitle from "../hooks/useTitle";
+import NotePasswordArea from "../componets/note/NotePasswordArea";
+import NoteArticleArea from "../componets/note/NoteArticleArea";
 
 function NoteRead() {
     const [ note, setNote ] = useState([]);
+    const [ notePassword , setNotePassword ] = useState("");
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useTitle(`김희식 기말 메모 읽기`);
 
     const getNote = async() => {
         try {
             const noteData = await axios.get(`http://localhost:3000/notes?id=${id}`);
-            console.log(noteData.data);
             setNote(noteData.data);
         } catch (error) {
             console.error(`getNote Error : ${error}`);
@@ -25,10 +28,25 @@ function NoteRead() {
     }, [])
 
     return (
-        <main>
-            <p>제목 : {note[0]?.title} </p>
-            <p>작성일 : {note[0]?.timestamp} </p>
-            <p>{note[0]?.content}</p>
+        <main className="container">
+        {
+            note[0]?.password ? ( // 비밀번호가 존재할 경우
+                note[0].password === notePassword ? ( // 비밀번호 체크
+                    <NoteArticleArea
+                        title={note[0]?.title}
+                        timestamp={note[0]?.timestamp}
+                        content={note[0]?.content}
+                    />
+                    ) : <NotePasswordArea id={"check-password"} password={notePassword} setPassword={setNotePassword} />
+            ) : (
+                <NoteArticleArea
+                    title={note[0]?.title}
+                    timestamp={note[0]?.timestamp}
+                    content={note[0]?.content}
+                />
+            )
+        }
+
         </main>
     )
 }
