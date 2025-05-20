@@ -1,5 +1,26 @@
 {
-  "schedules": [],
+  "schedules": [
+    {
+      "id": "b350",
+      "currentDay": {
+        "year": 2025,
+        "month": 5,
+        "day": 20
+      },
+      "time": "21:48",
+      "schedule": "ㅁㅁㅁ"
+    },
+    {
+      "id": "4a46",
+      "currentDay": {
+        "year": 2025,
+        "month": 5,
+        "day": 31
+      },
+      "time": "10:00",
+      "schedule": "sqld 시험"
+    }
+  ],
   "notes": [
     {
       "id": "9114",
@@ -16,18 +37,18 @@
       "timestamp": "2025. 5. 20. 오후 1:57:27"
     },
     {
-      "id": "2117",
-      "title": "테스트",
-      "content": "테스트 메모입니다",
-      "password": null,
-      "timestamp": "2025. 5. 20. 오후 2:56:17"
-    },
-    {
       "id": "ac88",
       "title": "비밀 메모",
       "content": "비밀스러운 메모",
       "password": "1234",
       "timestamp": "2025. 5. 20. 오후 2:57:20"
+    },
+    {
+      "id": "c3b4",
+      "title": "ㅁㅁㅁㅁ",
+      "content": "ㅁㅁㅁㅁ",
+      "password": null,
+      "timestamp": "2025. 5. 20. 오후 8:41:35"
     }
   ]
 }

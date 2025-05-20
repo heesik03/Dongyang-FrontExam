@@ -1,10 +1,10 @@
 const NoteArticleArea = ({title, timestamp, content}) => {
     return (
-        <section>
+        <article>
             <p>제목 : {title} </p>
             <p>작성일 : {timestamp} </p>
             <p>{content}</p>
-        </section>
+        </article>
     )
 }
 
