@@ -1,16 +1,6 @@
 {
   "schedules": [
     {
-      "id": "b350",
-      "currentDay": {
-        "year": 2025,
-        "month": 5,
-        "day": 20
-      },
-      "time": "21:48",
-      "schedule": "ㅁㅁㅁ"
-    },
-    {
       "id": "4a46",
       "currentDay": {
         "year": 2025,
@@ -19,6 +9,26 @@
       },
       "time": "10:00",
       "schedule": "sqld 시험"
+    },
+    {
+      "id": "641e",
+      "currentDay": {
+        "year": 2025,
+        "month": 5,
+        "day": 31
+      },
+      "time": "00:00",
+      "schedule": "알바"
+    },
+    {
+      "id": "2071",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 25
+      },
+      "time": "00:00",
+      "schedule": "종강"
     }
   ],
   "notes": [

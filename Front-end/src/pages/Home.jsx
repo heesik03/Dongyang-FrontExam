@@ -46,17 +46,30 @@ function Home() {
 
     const onSubmitSchedule = async(e) => {
         e.preventDefault();
+        if (time==="" || schedule==="") 
+            return alert("시간과 일정을 채워주세요.");
         try {
             await axios.post('http://localhost:3000/schedules', {
                 currentDay,
                 time,
                 schedule
             })
-            setTime("")
-            setSchedule("")
+            setTime("");
+            setSchedule("");
+            getScheduleList();
         } catch (error) {
             console.error(`onSubmitSchedule Error : ${error}`);
             alert("사이트 오류로 일정 작성에 실패했습니다.");
+        }
+    }
+
+    const deleteSchedule = async(id) => {
+        try {
+            await axios.delete(`http://localhost:3000/schedules/${id}`);
+            setScheduleList(scheduleList.filter(item => item.id !== id));
+        } catch (error) {
+            console.error(`deleteSchedule Error : ${error}`);
+            alert("사이트 오류로 일정 삭제에 실패했습니다.");
         }
     }
 
@@ -69,13 +82,15 @@ function Home() {
             <h1>메인페이지</h1>
             <section>
                 <p>여기에 캘린더를 둡니다</p>
-                <br />
 
                 <p>{`오늘 날짜 : ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</p>
                 <p>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
-                <button type="button" onClick={() => changeCurrentMonth(true)}>⬅️</button>
-                <br />
+                <button className="btn btn-outline-info btn-sm my-2"
+                    type="button" 
+                    onClick={() => changeCurrentMonth(true)}>
+                    ⬅️
+                </button>
                 <table id="calendar" style={{textAlign : "center"}}>
                     <thead>
                         <tr>
@@ -91,7 +106,9 @@ function Home() {
                         setCurrentDay={setCurrentDay}
                     />
                 </table>
-                <button type="button" onClick={() => changeCurrentMonth(false)}>➡️</button> 
+                <button className="btn btn-outline-info btn-sm my-2"
+                    type="button" 
+                    onClick={() => changeCurrentMonth(false)}>➡️</button> 
                 <br /> 
                 <hr />
                 <form onSubmit={(e) => onSubmitSchedule(e)}>
@@ -126,10 +143,20 @@ function Home() {
                 <h3>일정 목록</h3>
                 <ul>
                 {
-                    scheduleList.map(item => (
+                    scheduleList.filter(item =>
+                        item.currentDay.year === currentDay.year &&
+                        item.currentDay.month === currentDay.month &&
+                        item.currentDay.day === currentDay.day
+                    ).map(item => (
                         <li key={item.id}>
                             <p>{`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}</p>
-                            <p>{item.time} {item.schedule}</p>
+                            <p>{item.time} {item.schedule}
+                                <button className="btn btn-outline-danger btn-sm ms-2"
+                                    type="button" 
+                                    onClick={() => deleteSchedule(item.id)}>
+                                    X
+                                </button>
+                            </p>
                             <hr />
                         </li>
                     ))
