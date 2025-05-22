@@ -48,17 +48,17 @@
     },
     {
       "id": "ac88",
-      "title": "비밀 메모",
-      "content": "비밀스러운 메모",
-      "password": "1234",
-      "timestamp": "2025. 5. 20. 오후 2:57:20"
+      "title": "비밀풀기",
+      "content": "풀기",
+      "password": null,
+      "timestamp": "2025. 5. 22. 오후 3:21:44"
     },
     {
       "id": "c3b4",
-      "title": "ㅁㅁㅁㅁ",
-      "content": "ㅁㅁㅁㅁ",
-      "password": null,
-      "timestamp": "2025. 5. 20. 오후 8:41:35"
+      "title": "대한민국 대통령 예상",
+      "content": "만 40세 이상의 남성으로 예상",
+      "password": "1234",
+      "timestamp": "2025. 5. 22. 오후 3:22:07"
     }
   ]
 }

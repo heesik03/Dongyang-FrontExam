@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import useTitle from "../hooks/useTitle";
 import NotePasswordArea from "../componets/note/NotePasswordArea";
@@ -9,7 +9,6 @@ function NoteRead() {
     const [ note, setNote ] = useState([]);
     const [ notePassword , setNotePassword ] = useState("");
     const { id } = useParams();
-    const navigate = useNavigate();
 
     useTitle(`김희식 기말 메모 읽기`);
 
@@ -46,7 +45,12 @@ function NoteRead() {
                 />
             )
         }
-
+            <Link to={`/note/update/${id}`}>
+                <button className="btn btn-outline-primary btn-sm"
+                    type="button">
+                    수정
+                </button>
+            </Link>
         </main>
     )
 }

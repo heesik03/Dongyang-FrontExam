@@ -79,11 +79,12 @@ function Home() {
 
     return (
         <main className="container">
-            <h1>메인페이지</h1>
             <section>
-                <p>여기에 캘린더를 둡니다</p>
+                <h3>캘린더</h3>
+                <br />
 
-                <p>{`오늘 날짜 : ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</p>
+                <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>
+                <br />
                 <p>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
                 <button className="btn btn-outline-info btn-sm my-2"
