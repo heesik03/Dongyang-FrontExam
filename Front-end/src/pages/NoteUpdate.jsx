@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import useTitle from "../hooks/useTitle";
-import NoteWriteBoday from "../componets/note/NoteWriteBody";
+import NoteWriteBody from "../componets/note/NoteWriteBody";
 
 function NoteUpdate() {
-    const [ title, setTitle ] = useState("")
-    const [ content, setContent ] = useState("")
-    const [ password, setPassword ] = useState("");
-    const [ isLocked, setIsLocked ] = useState(false);
+    const [noteData, setNoteData] = useState({
+        title: "",
+        content: "",
+        password: "",
+        isLocked: false
+    });
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -23,9 +25,9 @@ function NoteUpdate() {
         try {
             await axios.put(`http://localhost:3000/notes/${id}`, {
                 id,
-                title,
-                content,
-                password : password==="" ? null : password,
+                title : noteData.title,
+                content : noteData.content,
+                password : noteData.password==="" ? null : noteData.password,
                 timestamp : koreaTime
             })
             alert("메모 수정에 성공했습니다!");
@@ -39,11 +41,9 @@ function NoteUpdate() {
     return (
         <main className="container">
             <h3>메모 수정</h3>
-            <NoteWriteBoday onSubmit={(e) => updateNote(e)} 
-                title={title} setTitle={setTitle}
-                content={content} setContent={setContent}
-                isLocked={isLocked} setIsLocked={setIsLocked}
-                password={password} setPassword={setPassword} />
+            <NoteWriteBody onSubmit={(e) => updateNote(e)} 
+                noteData={noteData}
+                setNoteData={setNoteData} />
         </main>
     )
 }

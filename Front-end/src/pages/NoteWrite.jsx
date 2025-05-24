@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useTitle from "../hooks/useTitle";
-import NoteWriteBoday from "../componets/note/NoteWriteBody";
+import NoteWriteBody from "../componets/note/NoteWriteBody";
 
 function NoteWrite() {
-    const [ title, setTitle ] = useState("")
-    const [ content, setContent ] = useState("")
-    const [ password, setPassword ] = useState("");
-    const [ isLocked, setIsLocked ] = useState(false);
+    const [noteData, setNoteData] = useState({
+        title: "",
+        content: "",
+        password: "",
+        isLocked: false
+    });
     const navigate = useNavigate();
     const koreaTime = new Date().toLocaleString("ko-KR", {
         timeZone: "Asia/Seoul",
@@ -20,9 +22,9 @@ function NoteWrite() {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3000/notes', {
-                title,
-                content,
-                password : password==="" ? null : password,
+                title : noteData.title,
+                content : noteData.content,
+                password : noteData.password==="" ? null : noteData.password,
                 timestamp : koreaTime
             })
             alert("메모 작성에 성공했습니다!");
@@ -36,11 +38,9 @@ function NoteWrite() {
     return (
         <main className="container">
             <h3>메모 작성</h3>
-            <NoteWriteBoday onSubmit={(e) => onSubmitNote(e)} 
-                title={title} setTitle={setTitle}
-                content={content} setContent={setContent}
-                isLocked={isLocked} setIsLocked={setIsLocked}
-                password={password} setPassword={setPassword} />
+            <NoteWriteBody onSubmit={(e) => onSubmitNote(e)} 
+                noteData={noteData}
+                setNoteData={setNoteData} />
         </main>
     )
 }

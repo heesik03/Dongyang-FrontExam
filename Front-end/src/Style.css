@@ -20,6 +20,11 @@ header li {
     padding-right : 2vw;
 }
 
+#read-content {
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+}
+
 .header-item:hover {
     color : blue;
     text-decoration: underline;
@@ -27,9 +32,11 @@ header li {
 
 .calendar-item:hover {
     cursor : pointer;
-    color : green;
+    font-weight: bold;
+    color : #1835D0 !important;
+    font-size : 1.2em;
     text-decoration : underline;
-    text-decoration-color : gold;
+    text-decoration-color : green;
 }
 
 .note-item:hover {

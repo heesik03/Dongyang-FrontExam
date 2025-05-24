@@ -1,9 +1,11 @@
 const NoteArticleArea = ({title, timestamp, content}) => {
     return (
         <article>
-            <p>제목 : {title} </p>
-            <p>작성일 : {timestamp} </p>
-            <p>{content}</p>
+            <h3 style={{fontWeight : "bold"}}>{title}</h3>
+            <p>{timestamp} </p>
+            <hr />
+            <p id="read-content">{content}</p>
+            <hr />
         </article>
     )
 }

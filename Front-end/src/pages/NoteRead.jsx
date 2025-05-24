@@ -12,10 +12,14 @@ function NoteRead() {
 
     useTitle(`김희식 기말 메모 읽기`);
 
+    const onChangePassword = (e) => {
+        setNotePassword(e.target.value);
+    }
+
     const getNote = async() => {
         try {
-            const noteData = await axios.get(`http://localhost:3000/notes?id=${id}`);
-            setNote(noteData.data);
+            const responseData = await axios.get(`http://localhost:3000/notes?id=${id}`);
+            setNote(responseData.data);
         } catch (error) {
             console.error(`getNote Error : ${error}`);
             alert("사이트 오류로 메모 불러오기에 실패했습니다.");
@@ -36,7 +40,7 @@ function NoteRead() {
                         timestamp={note[0]?.timestamp}
                         content={note[0]?.content}
                     />
-                    ) : <NotePasswordArea id={"check-password"} password={notePassword} setPassword={setNotePassword} />
+                    ) : <NotePasswordArea id={"check-password"} password={notePassword} onChange={onChangePassword} />
             ) : (
                 <NoteArticleArea
                     title={note[0]?.title}

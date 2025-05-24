@@ -1,4 +1,4 @@
-const NotePasswordArea = ({id, password, setPassword}) => {
+const NotePasswordArea = ({id, password, onChange}) => {
     return (
         <>
             <label className="form-label" htmlFor={id}>
@@ -8,8 +8,9 @@ const NotePasswordArea = ({id, password, setPassword}) => {
                 className="form-control-sm ms-2"
                 type="password"
                 id={id}
+                name={"password"}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={onChange}
             />
             <br />
         </>

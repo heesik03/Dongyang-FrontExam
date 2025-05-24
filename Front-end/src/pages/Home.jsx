@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CalendarBody from "../componets/CalendarBody";
+import CalendarBody from "../componets/calendar/CalendarBody";
 
 function Home() {
     const now = new Date();
@@ -36,8 +36,8 @@ function Home() {
 
     const getScheduleList = async() => {
         try {
-            const scheduleData = await axios.get('http://localhost:3000/schedules');
-            setScheduleList(scheduleData.data);
+            const responseListData = await axios.get('http://localhost:3000/schedules');
+            setScheduleList(responseListData.data);
         } catch (error) {
             console.error(`getScheduleList Error : ${error}`);
             alert("사이트 오류로 일정 불러오기에 실패했습니다.");
@@ -137,7 +137,10 @@ function Home() {
                         onChange={(e) => setSchedule(e.target.value)} />
                     <br />
 
-                    <button type="submit">제출</button>
+                    <button className="btn btn-primary btn-sm"
+                        type="submit">
+                            제출
+                    </button>
                 </form>
                 <br />
 

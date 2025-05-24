@@ -1,6 +1,27 @@
+import { useRef, useEffect } from "react";
 import NotePasswordArea from "./NotePasswordArea";
 
-const NoteWriteBoday = ({onSubmit, title, setTitle, content, setContent, isLocked, setIsLocked, password, setPassword}) => {
+const NoteWriteBody = ({onSubmit, noteData, setNoteData }) => {
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
+    const onChange = (e) => {
+        setNoteData((data) => ({
+            ...data,
+            [e.target.name]: e.target.value
+        }));        
+    }
+
+    const onChangeIsLocked = () => {
+        setNoteData((data) => ({
+            ...data,
+            isLocked: !data.isLocked
+        }));
+    };
+
     return (
         <form onSubmit={onSubmit}>
             <label className="form-label"
@@ -8,10 +29,12 @@ const NoteWriteBoday = ({onSubmit, title, setTitle, content, setContent, isLocke
                 제목
             </label>
             <input className="form-control" 
+                ref={inputRef}
                 type="text"
                 id="note-title"
-                value={title}
-                onChange={(e) => {setTitle(e.target.value)}} />
+                name={"title"}
+                value={noteData.title}
+                onChange={onChange} />
             <br />
 
             <label className="form-label"
@@ -20,22 +43,23 @@ const NoteWriteBoday = ({onSubmit, title, setTitle, content, setContent, isLocke
             </label>
             <textarea className="form-control"
                 id="note-content"
+                name={"content"}
                 rows="10" 
-                value={content}
-                onChange={(e) => {setContent(e.target.value)}} />
+                value={noteData.content}
+                onChange={onChange} />
             <br />
 
             <div className="form-check form-switch">
                 <input className="form-check-input" 
                     type="checkbox" 
                     id="lock-switch" 
-                    onChange={() => setIsLocked(isLocked => !isLocked)}
+                    onChange={onChangeIsLocked}
                 />
                 <label className="form-check-label" htmlFor="lock-switch">메모 잠금</label>
             </div>
             <br />
             {
-                isLocked && <NotePasswordArea id={"note-password"} password={password} setPassword={setPassword} />
+                noteData.isLocked && <NotePasswordArea id={"note-password"} password={noteData.password} onChange={onChange} />
             }
 
             <button className="btn btn-primary" 
@@ -46,4 +70,4 @@ const NoteWriteBoday = ({onSubmit, title, setTitle, content, setContent, isLocke
     );
 }
 
-export default NoteWriteBoday;
+export default NoteWriteBody;

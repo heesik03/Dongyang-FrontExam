@@ -10,8 +10,8 @@ function Note() {
 
     const getNoteList = async() => { // npx json-server db.json
         try {
-            const noteData = await axios.get('http://localhost:3000/notes');
-            setNoteList(noteData.data.reverse())
+            const responseListData = await axios.get('http://localhost:3000/notes');
+            setNoteList(responseListData.data.reverse())
         } catch (error) {
             console.error(`getNoteList Error : ${error}`);
             alert("사이트 오류로 메모 불러오기에 실패했습니다.");
@@ -37,7 +37,7 @@ function Note() {
             <h1>Note입니다.</h1>
             <br />
             <Link to="/note/write"> 
-                <button>작성</button>
+                <button className="btn btn-primary">작성</button>
             </Link>   
             <br />
             <br />
