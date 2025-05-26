@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PageMainTitle from "../componets/PageMainTitle";
+import ArrowButton from "../componets/calendar/ArrowButton";
 import CalendarBody from "../componets/calendar/CalendarBody";
 import ScheduleForm from "../componets/calendar/ScheduleForm";
 
@@ -84,13 +85,8 @@ function Home() {
 
                 <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>
                 <br />
-                <p style={{fontSize : "1.1vw"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
+                <p style={{fontSize : "1.2em"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
-                <button className="btn btn-outline-info btn-sm my-2"
-                    type="button" 
-                    onClick={() => changeCurrentMonth(true)}>
-                    ⬅️
-                </button>
                 <table id="calendar" style={{textAlign : "center"}}>
                     <thead>
                         <tr>
@@ -106,10 +102,15 @@ function Home() {
                         setCurrentDay={setCurrentDay}
                     />
                 </table>
-                <button className="btn btn-outline-info btn-sm my-2"
-                    type="button" 
-                    onClick={() => changeCurrentMonth(false)}>➡️</button> 
-                <br /> 
+                <div className="py-2">
+                    <ArrowButton arrow={"⬅️"} onClick={() => changeCurrentMonth(true)} />
+                    <ArrowButton arrow={"➡️"} onClick={() => changeCurrentMonth(false)} />
+                    <ArrowButton arrow={"🔄"} onClick={() => setCurrentDay({
+                        year : now.getFullYear(),
+                        month : now.getMonth()+1,
+                        day : now.getDate()
+                    })} />
+                </div>
                 <hr />
 
                 <ScheduleForm onSubmit={onSubmitSchedule} 
@@ -124,24 +125,38 @@ function Home() {
                 <ul>
                 {
                     scheduleList.filter(item =>
+                    item.currentDay.year === currentDay.year &&
+                    item.currentDay.month === currentDay.month &&
+                    item.currentDay.day === currentDay.day
+                    ).length === 0 ? (
+                        <li>
+                            <h4 className="fw-bold my-4">❗일정이 없습니다</h4>
+                        </li>
+                    ) : (
+                    scheduleList
+                        .filter(item =>
                         item.currentDay.year === currentDay.year &&
                         item.currentDay.month === currentDay.month &&
                         item.currentDay.day === currentDay.day
-                    ).map(item => (
-                        <li key={item.id}>
-                            <p>{`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}</p>
-                            <p>{item.time} {item.schedule}
-                                <button className="btn btn-outline-danger btn-sm ms-2"
-                                    type="button" 
-                                    onClick={() => deleteSchedule(item.id)}>
+                        ).map(item => (
+                            <li key={item.id}>
+                                <p>{`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}</p>
+                                <p>{item.time} {item.schedule}
+                                <button
+                                    className="btn btn-outline-danger btn-sm ms-2"
+                                    type="button"
+                                    onClick={() => deleteSchedule(item.id)}
+                                >
                                     X
                                 </button>
-                            </p>
-                            <hr />
-                        </li>
-                    ))
+                                </p>
+                                <hr />
+                            </li>
+                        ))
+                    )
                 }
                 </ul>
+
             </section>
             <section>
                 <p>뉴스기사 크롤링을 둡니다.</p>  

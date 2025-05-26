@@ -1,3 +1,7 @@
+:root {
+  --main-blue: #1835D0;
+}
+
 a {
   text-decoration-line: none;
   color : black;
@@ -9,17 +13,23 @@ ul {
     padding:0;
 }
 
+.arrow-button {
+  border: none;
+  background: none;
+  font-size : 1.8em;
+}
+
 #calendar th, td {
-    padding-right : 2vw;
+    padding-right : 2em;
 }
 
 #read-content {
-    margin-top: 5vw;
-    margin-bottom: 5vw;
+    margin-top: 4em;
+    margin-bottom: 4em;
 }
 
 header li:hover {
-  color: #1835D0 !important;
+  color: var(--main-blue) !important;
   text-decoration: underline;
   text-decoration-thickness: 5px; 
 }
@@ -27,12 +37,16 @@ header li:hover {
 .calendar-item:hover {
     cursor : pointer;
     font-weight: bold;
-    color : #1835D0 !important;
+    color : var(--main-blue) !important;
     text-decoration : underline;
     text-decoration-thickness: 3px;
     text-decoration-color : green;
 }
 
+.arrow-button:hover {
+  border: 1px solid var(--main-blue);
+  border-radius: 8px;                 
+}
 .note-item:hover {
     background :#EEEEEE;
 }

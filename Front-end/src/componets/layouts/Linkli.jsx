@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Linkli = ({link, label}) => {
     return (
         <Link to={link}> 
-            <li className="mx-4" style={{fontWeight : "bold", fontSize : "1.1vw"}}>
+            <li className="fw-bold mx-4" style={{fontSize : "1.1em"}}>
                 {label}
             </li>
         </Link>    
