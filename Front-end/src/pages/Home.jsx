@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PageMainTitle from "../componets/PageMainTitle";
 import CalendarBody from "../componets/calendar/CalendarBody";
+import ScheduleForm from "../componets/calendar/ScheduleForm";
 
 function Home() {
     const now = new Date();
@@ -46,8 +48,6 @@ function Home() {
 
     const onSubmitSchedule = async(e) => {
         e.preventDefault();
-        if (time==="" || schedule==="") 
-            return alert("시간과 일정을 채워주세요.");
         try {
             await axios.post('http://localhost:3000/schedules', {
                 currentDay,
@@ -80,13 +80,11 @@ function Home() {
     return (
         <main className="container">
             <section>
-                <h2 style={{fontWeight : "bold"}}>캘린더</h2>
-                <hr />
-                <br />
+                <PageMainTitle title={"캘린더"} />
 
                 <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>
                 <br />
-                <p>{`${currentDay.year}년 ${currentDay.month}월`}</p>
+                <p style={{fontSize : "1.1vw"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
                 <button className="btn btn-outline-info btn-sm my-2"
                     type="button" 
@@ -113,36 +111,13 @@ function Home() {
                     onClick={() => changeCurrentMonth(false)}>➡️</button> 
                 <br /> 
                 <hr />
-                <form onSubmit={(e) => onSubmitSchedule(e)}>
-                    <p>{`${currentDay.year}년 ${currentDay.month}월 ${currentDay.day}일`}</p>
-                    
-                    <label className="form-label"
-                        htmlFor="schedule-time">
-                        시간
-                    </label>
-                    <input className="ms-2"
-                        type="time"
-                        id="schedule-time" 
-                        value={time}
-                        onChange={(e) => setTime(e.target.value)} />
-                    <br />
 
-                    <label className="form-label"
-                        htmlFor="schedule">
-                        일정
-                    </label>
-                    <textarea className="ms-2"
-                        id="schedule" 
-                        rows="3" 
-                        value={schedule}
-                        onChange={(e) => setSchedule(e.target.value)} />
-                    <br />
-
-                    <button className="btn btn-primary btn-sm"
-                        type="submit">
-                            제출
-                    </button>
-                </form>
+                <ScheduleForm onSubmit={onSubmitSchedule} 
+                    currentDay={currentDay}
+                    time={time}
+                    setTime={setTime}
+                    schedule={schedule}
+                    setSchedule={setSchedule} />
                 <br />
 
                 <h3>일정 목록</h3>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useTitle from "../hooks/useTitle";
 import PageMainTitle from "../componets/PageMainTitle";
-import NoteWriteBody from "../componets/note/NoteWriteBody";
+import NoteWriteForm from "../componets/note/NoteWriteForm";
 
 function NoteWrite() {
     const [noteData, setNoteData] = useState({
@@ -39,7 +39,7 @@ function NoteWrite() {
     return (
         <main className="container">
             <PageMainTitle title={"메모 작성"} />
-            <NoteWriteBody onSubmit={(e) => onSubmitNote(e)} 
+            <NoteWriteForm onSubmit={(e) => onSubmitNote(e)} 
                 noteData={noteData}
                 setNoteData={setNoteData} />
         </main>

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import NotePasswordArea from "./NotePasswordArea";
 
-const NoteWriteBody = ({onSubmit, noteData, setNoteData }) => {
+const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -70,4 +70,4 @@ const NoteWriteBody = ({onSubmit, noteData, setNoteData }) => {
     );
 }
 
-export default NoteWriteBody;
+export default NoteWriteForm;

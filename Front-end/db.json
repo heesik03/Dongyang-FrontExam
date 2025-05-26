@@ -29,6 +29,16 @@
       },
       "time": "00:00",
       "schedule": "종강"
+    },
+    {
+      "id": "07a2",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 1
+      },
+      "time": "00:00",
+      "schedule": "6월의 시작"
     }
   ],
   "notes": [
@@ -79,6 +89,13 @@
       "content": "15자이상이되면어떻게될지너무궁금해서테스트를해보겠습니다",
       "password": null,
       "timestamp": "2025. 5. 26. 오전 9:24:32"
+    },
+    {
+      "id": "3cf1",
+      "title": "손흥민 유로파컵 우승 축하",
+      "content": "손흥민 유로파컵 우승 축하",
+      "password": null,
+      "timestamp": "2025. 5. 26. 오후 1:45:27"
     }
   ]
 }
