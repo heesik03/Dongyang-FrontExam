@@ -80,7 +80,8 @@ function Home() {
     return (
         <main className="container">
             <section>
-                <h3>캘린더</h3>
+                <h2 style={{fontWeight : "bold"}}>캘린더</h2>
+                <hr />
                 <br />
 
                 <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>

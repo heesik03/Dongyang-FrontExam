@@ -34,7 +34,7 @@ const NoteWriteBody = ({onSubmit, noteData, setNoteData }) => {
                 id="note-title"
                 name={"title"}
                 value={noteData.title}
-                onChange={onChange} />
+                onChange={onChange} required />
             <br />
 
             <label className="form-label"
@@ -46,14 +46,14 @@ const NoteWriteBody = ({onSubmit, noteData, setNoteData }) => {
                 name={"content"}
                 rows="10" 
                 value={noteData.content}
-                onChange={onChange} />
+                onChange={onChange} required />
             <br />
 
             <div className="form-check form-switch">
                 <input className="form-check-input" 
                     type="checkbox" 
                     id="lock-switch" 
-                    onChange={onChangeIsLocked}
+                    onChange={onChangeIsLocked} 
                 />
                 <label className="form-check-label" htmlFor="lock-switch">메모 잠금</label>
             </div>

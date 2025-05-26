@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import useTitle from "../hooks/useTitle";
+import PageMainTitle from "../componets/PageMainTitle";
 
 function Note() {
     const [ noteList, setNoteList ] = useState([]);
@@ -34,8 +35,8 @@ function Note() {
 
     return (
         <main className="container">
-            <h1>Note입니다.</h1>
-            <br />
+            <PageMainTitle title={"노트"} />
+
             <Link to="/note/write"> 
                 <button className="btn btn-primary">작성</button>
             </Link>   
@@ -48,7 +49,16 @@ function Note() {
                     noteList?.map(note => (
                         <li key={note.id} className="note-item">
                             <Link to={`/note/${note.id}`}>
-                                <p>{note.password && "🔒"} {note.title}</p>
+                                <p>
+                                {note.password && "🔒"} 
+                                
+                                {note.title.length > 15 ? ( // 제목이 16자 이상이라면 
+                                    <>
+                                        {note.title.slice(0, 14)}
+                                        <span style={{ fontSize: "1.5em", fontWeight: "bold" }}> · · · </span>
+                                    </>
+                                ) : note.title}
+                                </p>
                                 <small>{note.timestamp}</small>
                             </Link>
                             <button className="btn btn-outline-danger btn-sm ms-2"

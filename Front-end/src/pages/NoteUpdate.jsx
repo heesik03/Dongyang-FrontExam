@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import useTitle from "../hooks/useTitle";
+import PageMainTitle from "../componets/PageMainTitle";
 import NoteWriteBody from "../componets/note/NoteWriteBody";
 
 function NoteUpdate() {
@@ -40,7 +41,7 @@ function NoteUpdate() {
 
     return (
         <main className="container">
-            <h3>메모 수정</h3>
+            <PageMainTitle title={"메모 수정"} />
             <NoteWriteBody onSubmit={(e) => updateNote(e)} 
                 noteData={noteData}
                 setNoteData={setNoteData} />

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import useTitle from "../hooks/useTitle";
+import PageMainTitle from "../componets/PageMainTitle";
 import NotePasswordArea from "../componets/note/NotePasswordArea";
 import NoteArticleArea from "../componets/note/NoteArticleArea";
 
@@ -32,6 +33,7 @@ function NoteRead() {
 
     return (
         <main className="container">
+            <PageMainTitle title={"메모 읽기"} />
         {
             note[0]?.password ? ( // 비밀번호가 존재할 경우
                 note[0].password === notePassword ? ( // 비밀번호 체크

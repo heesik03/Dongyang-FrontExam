@@ -1,4 +1,4 @@
-import Linkli from "../LinkLi"
+import Linkli from "./Linkli"
 
 const Header = () => {
     const headerList = [
@@ -14,8 +14,8 @@ const Header = () => {
 
     return (
         <header>
-            <nav className="navbar">
-                <ul>
+            <nav className="navbar justify-content-center mt-3">
+                <ul className="list-unstyled d-flex">
                 {
                     headerList.map( list => (
                         <Linkli key={list.label} link={list.link} label={list.label} />

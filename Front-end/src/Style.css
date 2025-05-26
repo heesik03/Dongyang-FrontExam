@@ -9,25 +9,19 @@ ul {
     padding:0;
 }
 
-header li { 
-    margin: 0 16px 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-}
-
 #calendar th, td {
     padding-right : 2vw;
 }
 
 #read-content {
-    margin-top: 7vw;
-    margin-bottom: 7vw;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
 }
 
-.header-item:hover {
-    color : blue;
-    text-decoration: underline;
+header li:hover {
+  color: #1835D0 !important;
+  text-decoration: underline;
+  text-decoration-thickness: 5px; /* 원하는 굵기로 조절 (기본은 1px) */
 }
 
 .calendar-item:hover {
