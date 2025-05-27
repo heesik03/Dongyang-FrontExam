@@ -1,7 +1,7 @@
 const ScheduleForm = ({onSubmit, currentDay, time, setTime, schedule, setSchedule}) => {
     return (
         <form onSubmit={(e) => onSubmit(e)}>
-            <p>{`${currentDay.year}년 ${currentDay.month}월 ${currentDay.day}일`}</p>
+            <p style={{fontSize : "1.2em"}}>{`${currentDay.year}년 ${currentDay.month}월 ${currentDay.day}일`}</p>
             
             <label className="form-label"
                 htmlFor="schedule-time" >
@@ -25,7 +25,7 @@ const ScheduleForm = ({onSubmit, currentDay, time, setTime, schedule, setSchedul
                 onChange={(e) => setSchedule(e.target.value)} required />
             <br />
 
-            <button className="btn btn-outline-primary btn-sm"
+            <button className="btn btn-outline-primary"
                 type="submit">
                     제출
             </button>

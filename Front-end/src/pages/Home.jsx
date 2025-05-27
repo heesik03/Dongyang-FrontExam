@@ -85,30 +85,33 @@ function Home() {
 
                 <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>
                 <br />
-                <p style={{fontSize : "1.2em"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
+                <p className="text-center fw-bold" style={{fontSize : "1.4em"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
-                <table id="calendar" style={{textAlign : "center"}}>
-                    <thead>
-                        <tr>
-                            {weekList.map(week => (
-                                <th key={week}>{week}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <CalendarBody
-                        lastDay={lastDay}
-                        firstWeek={firstWeek}
-                        currentDay={currentDay}
-                        setCurrentDay={setCurrentDay}
-                    />
-                </table>
-                <div className="py-2">
+                <div class="d-flex justify-content-center">
+                    <table className="table" style={{width : "70%", fontSize : "1.1em"}}>
+                        <thead>
+                            <tr>
+                                {weekList.map(week => (
+                                    <th key={week}>{week}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <CalendarBody
+                            lastDay={lastDay}
+                            firstWeek={firstWeek}
+                            currentDay={currentDay}
+                            setCurrentDay={setCurrentDay}
+                        />
+                    </table>
+                </div>
+
+                <div className="text-center my-3">
                     <ArrowButton arrow={"⬅️"} onClick={() => changeCurrentMonth(true)} />
                     <ArrowButton arrow={"➡️"} onClick={() => changeCurrentMonth(false)} />
                     <ArrowButton arrow={"🔄"} onClick={() => setCurrentDay({
                         year : now.getFullYear(),
                         month : now.getMonth()+1,
-                        day : now.getDate()
+                        day : now.getDate() 
                     })} />
                 </div>
                 <hr />

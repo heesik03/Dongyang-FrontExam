@@ -16,11 +16,7 @@ ul {
 .arrow-button {
   border: none;
   background: none;
-  font-size : 1.8em;
-}
-
-#calendar th, td {
-    padding-right : 2em;
+  font-size : 2.2em;
 }
 
 #read-content {
@@ -36,17 +32,21 @@ header li:hover {
 
 .calendar-item:hover {
     cursor : pointer;
-    font-weight: bold;
     color : var(--main-blue) !important;
     text-decoration : underline;
     text-decoration-thickness: 3px;
-    text-decoration-color : green;
+    text-decoration-color : #000080;
+}
+
+.arrow-button {
+  border: 1px solid transparent;   /* hover 시 화면 움직임 방지 용 */
+  border-radius: 8px; 
 }
 
 .arrow-button:hover {
   border: 1px solid var(--main-blue);
-  border-radius: 8px;                 
 }
+
 .note-item:hover {
     background :#EEEEEE;
 }
