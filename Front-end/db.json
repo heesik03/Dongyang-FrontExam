@@ -8,7 +8,8 @@
         "day": 31
       },
       "time": "10:00",
-      "schedule": "sqld 시험"
+      "schedule": "sqld 시험",
+      "important": false
     },
     {
       "id": "641e",
@@ -18,7 +19,8 @@
         "day": 31
       },
       "time": "00:00",
-      "schedule": "알바"
+      "schedule": "알바",
+      "important": false
     },
     {
       "id": "2071",
@@ -28,7 +30,8 @@
         "day": 25
       },
       "time": "00:00",
-      "schedule": "종강"
+      "schedule": "종강",
+      "important": false
     },
     {
       "id": "07a2",
@@ -38,7 +41,19 @@
         "day": 1
       },
       "time": "00:00",
-      "schedule": "6월의 시작"
+      "schedule": "6월의 시작",
+      "important": false
+    },
+    {
+      "id": "2860",
+      "currentDay": {
+        "year": 2025,
+        "month": 5,
+        "day": 31
+      },
+      "time": "10:35",
+      "schedule": "프런트엔드실습",
+      "important": true
     }
   ],
   "notes": [

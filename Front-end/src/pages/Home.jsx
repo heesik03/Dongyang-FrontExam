@@ -12,10 +12,13 @@ function Home() {
         month : now.getMonth()+1,
         day : now.getDate()
     });
+    const [ schedule, setSchedule ] = useState({ // 일정
+        description  : "",
+        time : "",
+        isImportant : false
+    })
     const [ firstWeek, setFirstWeek ] = useState(new Date(currentDay.year, currentDay.month-1, 1).getDay()); // 첫날의 요일
     const [ lastDay, setLastDay ] = useState(new Date(currentDay.year, currentDay.month, 0).getDate()); // 선택한 월의 말일
-    const [ time, setTime ] = useState(""); // 일정의 시간
-    const [ schedule, setSchedule] = useState(""); // 일정의 내용
     const [ scheduleList, setScheduleList] = useState([]);
 
     const weekList = ['일', '월', '화', '수', '목', '금', '토'];
@@ -52,11 +55,11 @@ function Home() {
         try {
             await axios.post('http://localhost:3000/schedules', {
                 currentDay,
-                time,
-                schedule
+                time : schedule.time,
+                schedule : schedule.description,
+                important : schedule.isImportant
             })
-            setTime("");
-            setSchedule("");
+            setSchedule({ description  : "", time : "", isImportant : false})
             getScheduleList();
         } catch (error) {
             console.error(`onSubmitSchedule Error : ${error}`);
@@ -87,8 +90,8 @@ function Home() {
                 <br />
                 <p className="text-center fw-bold" style={{fontSize : "1.4em"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
 
-                <div class="d-flex justify-content-center">
-                    <table className="table" style={{width : "70%", fontSize : "1.1em"}}>
+                <div className="d-flex justify-content-center">
+                    <table className="table" style={{width : "70%", fontSize : "1.2em"}}>
                         <thead>
                             <tr>
                                 {weekList.map(week => (
@@ -116,10 +119,9 @@ function Home() {
                 </div>
                 <hr />
 
-                <ScheduleForm onSubmit={onSubmitSchedule} 
+                <ScheduleForm 
+                    onSubmit={onSubmitSchedule} 
                     currentDay={currentDay}
-                    time={time}
-                    setTime={setTime}
                     schedule={schedule}
                     setSchedule={setSchedule} />
                 <br />
@@ -141,17 +143,26 @@ function Home() {
                         item.currentDay.year === currentDay.year &&
                         item.currentDay.month === currentDay.month &&
                         item.currentDay.day === currentDay.day
-                        ).map(item => (
-                            <li key={item.id}>
+                        )
+                        .sort((a, b) => a.time.localeCompare(b.time)) // 시간 기준 오름차순 정렬
+                        .map(item => (
+                            <li key={item.id} className="schedule-item">
                                 <p>{`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}</p>
-                                <p>{item.time} {item.schedule}
-                                <button
-                                    className="btn btn-outline-danger btn-sm ms-2"
-                                    type="button"
-                                    onClick={() => deleteSchedule(item.id)}
-                                >
-                                    X
-                                </button>
+                                <p>
+                                    <span style={{ 
+                                        color: item.important ? "#ec5353" : "black", 
+                                        fontWeight: item.important ? "bold" : "normal" 
+                                    }}>
+                                        {item.important && "중요!  "}
+                                    </span>
+                                    {item.time} {item.schedule}
+                                    <button
+                                        className="btn btn-outline-danger btn-sm ms-2"
+                                        type="button"
+                                        onClick={() => deleteSchedule(item.id)}
+                                    >
+                                        X
+                                    </button>
                                 </p>
                                 <hr />
                             </li>

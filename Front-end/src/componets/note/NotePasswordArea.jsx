@@ -8,7 +8,6 @@ const NotePasswordArea = ({id, password, onChange}) => {
                 className="form-control-sm ms-2"
                 type="password"
                 id={id}
-                name={"password"}
                 value={password}
                 onChange={onChange}
             />

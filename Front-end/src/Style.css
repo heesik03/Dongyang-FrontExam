@@ -47,6 +47,6 @@ header li:hover {
   border: 1px solid var(--main-blue);
 }
 
-.note-item:hover {
+.note-item:hover, .schedule-item:hover {
     background :#EEEEEE;
 }

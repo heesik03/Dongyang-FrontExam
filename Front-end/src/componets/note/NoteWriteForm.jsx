@@ -9,41 +9,39 @@ const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
     }, []);
 
     const onChange = (e) => {
-        setNoteData((data) => ({
-            ...data,
-            [e.target.name]: e.target.value
-        }));        
+        setNoteData({
+            ...noteData,
+            [e.target.id]: e.target.value
+        });        
     }
 
     const onChangeIsLocked = () => {
-        setNoteData((data) => ({
-            ...data,
-            isLocked: !data.isLocked
+        setNoteData((noteData) => ({
+            ...noteData,
+            isLocked: !noteData.isLocked
         }));
     };
 
     return (
         <form onSubmit={onSubmit}>
             <label className="form-label"
-                htmlFor="note-title">   
+                htmlFor="title">   
                 제목
             </label>
             <input className="form-control" 
                 ref={inputRef}
                 type="text"
-                id="note-title"
-                name={"title"}
+                id="title"
                 value={noteData.title}
                 onChange={onChange} required />
             <br />
 
             <label className="form-label"
-                htmlFor="note-content">
+                htmlFor="content">
                 내용
             </label>
             <textarea className="form-control"
-                id="note-content"
-                name={"content"}
+                id="content"
                 rows="10" 
                 value={noteData.content}
                 onChange={onChange} required />
@@ -59,7 +57,7 @@ const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
             </div>
             <br />
             {
-                noteData.isLocked && <NotePasswordArea id={"note-password"} password={noteData.password} onChange={onChange} />
+                noteData.isLocked && <NotePasswordArea id={"password"} password={noteData.password} onChange={onChange} />
             }
 
             <button className="btn btn-primary" 
