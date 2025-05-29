@@ -40,6 +40,16 @@ function Home() {
         setLastDay(new Date(year, month, 0).getDate())
     }
 
+    const rollbackMonth = () => {
+        setCurrentDay({
+            year : now.getFullYear(),
+            month : now.getMonth()+1,
+            day : now.getDate() 
+        })
+        setFirstWeek(new Date(now.getFullYear(), now.getMonth(), 1).getDay())
+        setLastDay(new Date(now.getFullYear(), now.getMonth()+1, 0).getDate())
+    }
+
     const getScheduleList = async() => {
         try {
             const responseListData = await axios.get('http://localhost:3000/schedules');
@@ -111,11 +121,7 @@ function Home() {
                 <div className="text-center my-3">
                     <ArrowButton arrow={"⬅️"} onClick={() => changeCurrentMonth(true)} />
                     <ArrowButton arrow={"➡️"} onClick={() => changeCurrentMonth(false)} />
-                    <ArrowButton arrow={"🔄"} onClick={() => setCurrentDay({
-                        year : now.getFullYear(),
-                        month : now.getMonth()+1,
-                        day : now.getDate() 
-                    })} />
+                    <ArrowButton arrow={"🔄"} onClick={rollbackMonth} />
                 </div>
                 <hr />
 
@@ -124,7 +130,7 @@ function Home() {
                     currentDay={currentDay}
                     schedule={schedule}
                     setSchedule={setSchedule} />
-                <br />
+                <hr />
 
                 <h3>일정 목록</h3>
                 <ul>
@@ -171,9 +177,6 @@ function Home() {
                 }
                 </ul>
 
-            </section>
-            <section>
-                <p>뉴스기사 크롤링을 둡니다.</p>  
             </section>
         </main>
     );

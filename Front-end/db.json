@@ -54,6 +54,17 @@
       "time": "10:35",
       "schedule": "프런트엔드실습",
       "important": true
+    },
+    {
+      "id": "3455",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 3
+      },
+      "time": "06:00",
+      "schedule": "대통령 선거",
+      "important": true
     }
   ],
   "notes": [
@@ -62,6 +73,7 @@
       "title": "aaaa",
       "content": "aaaaa",
       "password": "aaa",
+      "star": false,
       "timestamp": "2025. 5. 20. 오후 1:57:05"
     },
     {
@@ -69,6 +81,7 @@
       "title": "aaaaaa",
       "content": "aaaaaa",
       "password": null,
+      "star": false,
       "timestamp": "2025. 5. 20. 오후 1:57:27"
     },
     {
@@ -76,6 +89,7 @@
       "title": "비밀풀기",
       "content": "풀기",
       "password": null,
+      "star": false,
       "timestamp": "2025. 5. 22. 오후 3:21:44"
     },
     {
@@ -83,12 +97,14 @@
       "title": "대한민국 대통령 예상",
       "content": "만 40세 이상의 남성으로 예상",
       "password": "1234",
+      "star": false,
       "timestamp": "2025. 5. 22. 오후 3:22:07"
     },
     {
       "id": "ecb5",
       "title": "스타벅스에서 코딩",
       "content": "코딩 중...",
+      "star": false,
       "timestamp": "2025. 5. 24. 오전 9:56:45"
     },
     {
@@ -96,6 +112,7 @@
       "title": "편의점은 역시 GS",
       "content": "편의점은 역시 GS",
       "password": null,
+      "star": true,
       "timestamp": "2025. 5. 26. 오전 9:24:10"
     },
     {
@@ -103,6 +120,7 @@
       "title": "15자이상이되면어떻게될지너무궁금해서테스트를",
       "content": "15자이상이되면어떻게될지너무궁금해서테스트를해보겠습니다",
       "password": null,
+      "star": false,
       "timestamp": "2025. 5. 26. 오전 9:24:32"
     },
     {
@@ -110,6 +128,7 @@
       "title": "손흥민 유로파컵 우승 축하",
       "content": "손흥민 유로파컵 우승 축하",
       "password": null,
+      "star": true,
       "timestamp": "2025. 5. 26. 오후 1:45:27"
     }
   ]

@@ -9,6 +9,7 @@ import NoteArticleArea from "../componets/note/NoteArticleArea";
 function NoteRead() {
     const [ note, setNote ] = useState([]);
     const [ notePassword , setNotePassword ] = useState("");
+    const [ isStar, setIsStar ] = useState(note[0]?.star);
     const { id } = useParams();
 
     useTitle(`김희식 기말 메모 읽기`);
@@ -27,9 +28,27 @@ function NoteRead() {
         }
     }
 
+    const patchStar = async() => {
+        try {
+            await axios.patch(`http://localhost:3000/notes/${id}`, {
+                star : !isStar
+            })
+            setIsStar(isStar => !isStar);  // UI 업데이트
+        } catch (error) {
+            console.error(`patchStar Error : ${error}`);
+            return alert("사이트 별표 수정에 실패했습니다.");
+        }
+    }
+
     useEffect(() => {
         getNote();
     }, [])
+
+    useEffect(() => {
+        if (note[0]?.star !== undefined) {
+            setIsStar(note[0].star);
+        }
+    }, [note]);
 
     return (
         <main className="container">
@@ -48,6 +67,8 @@ function NoteRead() {
                     title={note[0]?.title}
                     timestamp={note[0]?.timestamp}
                     content={note[0]?.content}
+                    star={isStar}
+                    patch={patchStar}
                 />
             )
         }

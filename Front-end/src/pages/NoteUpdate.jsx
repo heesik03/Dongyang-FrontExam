@@ -29,6 +29,7 @@ function NoteUpdate() {
                 title : noteData.title,
                 content : noteData.content,
                 password : noteData.password==="" ? null : noteData.password,
+                star : false,
                 timestamp : koreaTime
             })
             alert("메모 수정에 성공했습니다!");

@@ -47,9 +47,9 @@ function Note() {
                 <ul>
                 {
                     noteList?.map(note => (
-                        <li key={note.id} className="note-item">
+                        <li key={note.id} className={note.star ? "note-item-star" : "note-item"}>
                             <Link to={`/note/${note.id}`}>
-                                <p>
+                                <p style={{color : note.star ? "#FFD700" : "black", fontWeight: note.star ? "bold" : "normal" }}>
                                 {note.password && "🔒"} 
                                 
                                 {note.title.length > 15 ? ( // 제목이 16자 이상이라면 

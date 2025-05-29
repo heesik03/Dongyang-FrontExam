@@ -26,6 +26,7 @@ function NoteWrite() {
                 title : noteData.title,
                 content : noteData.content,
                 password : noteData.password==="" ? null : noteData.password,
+                star : false,
                 timestamp : koreaTime
             })
             alert("메모 작성에 성공했습니다!");

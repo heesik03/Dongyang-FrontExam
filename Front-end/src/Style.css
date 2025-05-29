@@ -39,14 +39,18 @@ header li:hover {
 }
 
 .arrow-button {
-  border: 1px solid transparent;   /* hover 시 화면 움직임 방지 용 */
-  border-radius: 8px; 
+    border: 1px solid transparent;   /* hover 시 화면 움직임 방지 용 */
+    border-radius: 8px; 
 }
 
 .arrow-button:hover {
-  border: 1px solid var(--main-blue);
+    border: 1px solid var(--main-blue);
 }
 
 .note-item:hover, .schedule-item:hover {
     background :#EEEEEE;
+}
+
+.note-item-star:hover {
+    background :#FAFAD2;
 }
