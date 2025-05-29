@@ -10,16 +10,39 @@ import NoteUpdate from "./pages/NoteUpdate";
 
 import './style.css'
 
+const routes = [
+  {
+    path : "*",
+    element : <Home />
+  },
+  {
+    path : "/note",
+    element : <Note />
+  },
+  {
+    path : "/note/:id",
+    element : <NoteRead />
+  },
+  {
+    path : "/note/write",
+    element : <NoteWrite />
+  },
+  {
+    path : "/note/update/:id",
+    element : <NoteUpdate />
+  },
+]
+
 function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
       <Routes>
-        <Route path="*" element={<Home />} /> 
-        <Route path="/note" element={<Note />} /> 
-        <Route path="/note/:id" element={<NoteRead />} /> 
-        <Route path="/note/write" element={<NoteWrite />} /> 
-        <Route path="/note/update/:id" element={<NoteUpdate />} />
+      {
+        routes.map(route => {
+          return <Route key={route.path} path={route.path} element={route.element} />;
+        })
+      }
       </Routes>
       <Footer />
     </div>
