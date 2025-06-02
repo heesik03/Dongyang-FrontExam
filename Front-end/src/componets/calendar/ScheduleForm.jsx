@@ -22,7 +22,7 @@ const ScheduleForm = ({onSubmit, currentDay, schedule, setSchedule}) => {
                 htmlFor="time" >
                 시간
             </label>
-            <input className="ms-4"
+            <input className="form-control border-primary"
                 type="time"
                 id="time" 
                 value={schedule.time}
@@ -33,7 +33,7 @@ const ScheduleForm = ({onSubmit, currentDay, schedule, setSchedule}) => {
                 htmlFor="description">
                 일정
             </label>
-            <textarea className="ms-4"
+            <textarea className="form-control border-primary"
                 id="description" 
                 rows="3" 
                 value={schedule.description}
@@ -44,7 +44,7 @@ const ScheduleForm = ({onSubmit, currentDay, schedule, setSchedule}) => {
                 htmlFor="important">
                 중요도
             </label>
-            <input className="form-check-input ms-3 border border-primary"
+            <input className="form-check-input ms-3 border-primary"
                 type='checkbox'
                 id="important"
                 checked={schedule.isImportant}

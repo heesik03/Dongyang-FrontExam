@@ -93,46 +93,53 @@ function Home() {
 
     return (
         <main className="container">
-            <section>
-                <PageMainTitle title={"캘린더"} />
+            <PageMainTitle title={"캘린더"} />
 
-                <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>
-                <br />
-                <p className="text-center fw-bold" style={{fontSize : "1.4em"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
+            <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>
+            <br />
 
-                <div className="d-flex justify-content-center">
-                    <table className="table" style={{width : "70%", fontSize : "1.2em"}}>
-                        <thead>
+            <section className="container my-3">
+                <p className="fw-bold" style={{fontSize : "1.4em"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
+                <div className="row">
+                    <section className="col-md-8"> {/* grid 12칸 중 8칸 */}
+                        <table className="table" style={{ fontSize: "1.2em" }}>
+                            <thead>
                             <tr>
                                 {weekList.map(week => (
-                                    <th key={week}>{week}</th>
+                                <th key={week}>{week}</th>
                                 ))}
                             </tr>
-                        </thead>
-                        <CalendarBody
+                            </thead>
+                            <CalendarBody
                             lastDay={lastDay}
                             firstWeek={firstWeek}
                             currentDay={currentDay}
                             setCurrentDay={setCurrentDay}
+                            />
+                        </table>
+
+                        <div className="my-3 d-flex gap-2">
+                            <ArrowButton arrow="⬅️" onClick={() => changeCurrentMonth(true)} />
+                            <ArrowButton arrow="➡️" onClick={() => changeCurrentMonth(false)} />
+                            <ArrowButton arrow="🔄" onClick={rollbackMonth} />
+                        </div>
+
+                        <hr />
+                    </section>
+
+                    <aside className="col-md-4"> {/* grid 12칸 중 4칸 */}
+                        <ScheduleForm
+                            onSubmit={onSubmitSchedule}
+                            currentDay={currentDay}
+                            schedule={schedule}
+                            setSchedule={setSchedule}
                         />
-                    </table>
+                    </aside>
                 </div>
-
-                <div className="text-center my-3">
-                    <ArrowButton arrow={"⬅️"} onClick={() => changeCurrentMonth(true)} />
-                    <ArrowButton arrow={"➡️"} onClick={() => changeCurrentMonth(false)} />
-                    <ArrowButton arrow={"🔄"} onClick={rollbackMonth} />
-                </div>
-                <hr />
-
-                <ScheduleForm 
-                    onSubmit={onSubmitSchedule} 
-                    currentDay={currentDay}
-                    schedule={schedule}
-                    setSchedule={setSchedule} />
-                <hr />
-
-                <h3>일정 목록</h3>
+            </section>
+            
+            <section>
+                <h3 className="mb-3">일정 목록</h3>
                 <ul>
                 {
                     scheduleList.filter(item =>
@@ -153,7 +160,9 @@ function Home() {
                         .sort((a, b) => a.time.localeCompare(b.time)) // 시간 기준 오름차순 정렬
                         .map(item => (
                             <li key={item.id} className="schedule-item">
-                                <p>{`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}</p>
+                                <p>
+                                    {`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}
+                                </p>
                                 <p>
                                     <span style={{ 
                                         color: item.important ? "#ec5353" : "black", 
@@ -176,7 +185,6 @@ function Home() {
                     )
                 }
                 </ul>
-
             </section>
         </main>
     );

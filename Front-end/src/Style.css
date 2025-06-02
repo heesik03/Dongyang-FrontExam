@@ -36,7 +36,7 @@ header li:hover {
   text-decoration-thickness: 5px; 
 }
 
-.calendar-item:hover {
+#click-item, .calendar-item:hover {
     cursor : pointer;
     color : var(--main-blue) !important;
     text-decoration : underline;
