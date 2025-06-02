@@ -60,6 +60,8 @@ function NoteRead() {
                         title={note[0]?.title}
                         timestamp={note[0]?.timestamp}
                         content={note[0]?.content}
+                        star={isStar}
+                        patch={patchStar}
                     />
                     ) : <NotePasswordArea id={"check-password"} password={notePassword} onChange={onChangePassword} />
             ) : (

@@ -97,13 +97,14 @@
       "title": "대한민국 대통령 예상",
       "content": "만 40세 이상의 남성으로 예상",
       "password": "1234",
-      "star": false,
+      "star": true,
       "timestamp": "2025. 5. 22. 오후 3:22:07"
     },
     {
       "id": "ecb5",
       "title": "스타벅스에서 코딩",
       "content": "코딩 중...",
+      "password": null,
       "star": false,
       "timestamp": "2025. 5. 24. 오전 9:56:45"
     },
@@ -130,6 +131,14 @@
       "password": null,
       "star": true,
       "timestamp": "2025. 5. 26. 오후 1:45:27"
+    },
+    {
+      "id": "100f",
+      "title": "DB수업 끝",
+      "content": "정규화 무한반복...",
+      "password": null,
+      "star": false,
+      "timestamp": "2025. 6. 2. 오후 2:01:12"
     }
   ]
 }

@@ -3,17 +3,41 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import useTitle from "../hooks/useTitle";
 import PageMainTitle from "../componets/PageMainTitle";
+import NoteItem from "../componets/note/NoteItem";
 
 function Note() {
-    const [ sortValue, setSortValue ] = useState("latest"); // 기본 최신순
+    const [ originNoteList, setOriginNoteList ] = useState([]);
     const [ noteList, setNoteList ] = useState([]);
+    const [ showMore, setShowMore ] = useState(false);
 
     useTitle("김희식 기말 메모");
+
+    const sortNoteList = (e) => {    
+        const value = e.target.value;
+        if (showMore) { // 더보기 버튼이 눌린 경우, 다시 false로 바꾸어 더보기 버튼 생성
+            setShowMore((show) => !show)
+        }
+
+        if (value === 'earliest') { // 오래된 순
+            setNoteList([...originNoteList].reverse());
+        } else if (value === 'starred') { // 별표만
+            setNoteList(originNoteList.filter(note => 
+                note.star===true
+            ));
+        } else if (value === 'locked') { // 잠금만
+            setNoteList(originNoteList.filter(note => 
+                note.password!==null
+            ));            
+        } else { // 최신순 혹은 다른 value가 들어왔을때
+            setNoteList([...originNoteList]);
+        }
+    }
 
     const getNoteList = async() => { // npx json-server db.json
         try {
             const responseListData = await axios.get('http://localhost:3000/notes');
-            setNoteList(responseListData.data.reverse())
+            setOriginNoteList(responseListData.data.reverse()) // 바뀌지 않는 원본 생성
+            setNoteList(responseListData.data) 
         } catch (error) {
             console.error(`getNoteList Error : ${error}`);
             alert("사이트 오류로 메모 불러오기에 실패했습니다.");
@@ -23,7 +47,8 @@ function Note() {
     const deleteNote = async(id) => {
         try {
             await axios.delete(`http://localhost:3000/notes/${id}`);
-            setNoteList(noteList.filter(note => note.id !== id));
+            setOriginNoteList(originNoteList.filter(note => note.id !== id));
+            setNoteList(originNoteList.filter(note => note.id !== id));
         } catch (error) {
             console.error(`deleteNote Error : ${error}`);
             alert("사이트 오류로 노트 삭제에 실패했습니다.");
@@ -42,10 +67,11 @@ function Note() {
                 <Link to="/note/write"> 
                     <button className="btn btn-primary">작성</button>
                 </Link>   
-                <select className="ms-auto" value={sortValue} onChange={(e) => setSortValue(e.target.value)}>
+                <select className="ms-auto" onChange={sortNoteList}>
                     <option value="latest">최신순</option>
                     <option value="earliest">오래된 순</option>
                     <option value="starred">별표만</option>
+                    <option value="locked">잠금만</option>
                 </select>
             </div>
             <br />
@@ -53,29 +79,20 @@ function Note() {
             <section>
                 <ul>
                 {
-                    noteList?.map(note => (
-                        <li key={note.id} className={note.star ? "note-item-star" : "note-item"}>
-                            <Link to={`/note/${note.id}`}>
-                                <p style={{color : note.star ? "#FFD700" : "black", fontWeight: note.star ? "bold" : "normal" }}>
-                                {note.password && "🔒"} 
-                                
-                                {note.title.length > 15 ? ( // 제목이 16자 이상이라면 
-                                    <>
-                                        {note.title.slice(0, 14)}
-                                        <span style={{ fontSize: "1.5em", fontWeight: "bold" }}> · · · </span>
-                                    </>
-                                ) : note.title}
-                                </p>
-                                <small>{note.timestamp}</small>
-                            </Link>
-                            <button className="btn btn-outline-danger btn-sm ms-2"
-                                type="button" 
-                                onClick={() => deleteNote(note.id)} >
-                                X
-                            </button>
-                            <hr />
-                        </li>
+                    // noteList가 5 이상이거나 더보기 버튼을 누르지 않은 경우 0~4번째 배열까지 보여줌
+                    (noteList?.length >= 5 && !showMore ? noteList.slice(0, 5) : noteList).map(note => (
+                        <NoteItem key={note.id} note={note} deleteNote={deleteNote} />
                     ))
+                }
+                {
+                    !showMore && noteList?.length > 5 &&
+                        <li className="text-center">
+                            <button className="show-button p-2" 
+                                style={{fontSize : "1.4em"}}
+                                onClick={() => setShowMore((show) => !show)} >
+                                더보기
+                            </button>
+                        </li>
                 }
                 </ul>
             </section>
