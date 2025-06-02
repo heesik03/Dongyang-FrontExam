@@ -2,7 +2,8 @@ import { useRef, useEffect } from "react";
 import NotePasswordArea from "./NotePasswordArea";
 
 const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
-    const inputRef = useRef(null);
+    const inputRef = useRef(null); // 제목 focus
+    const textareaRef = useRef(null); // 내용 focus
 
     useEffect(() => {
         inputRef.current.focus();
@@ -13,6 +14,13 @@ const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
             ...noteData,
             [e.target.id]: e.target.value
         });        
+    }
+
+    const onKeyDownEnter = (e) => {
+        if(e.key === "Enter") {
+            e.preventDefault(); // 줄바꿈 방지
+            textareaRef.current.focus();
+        }
     }
 
     const onChangeIsLocked = () => {
@@ -33,7 +41,8 @@ const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
                 type="text"
                 id="title"
                 value={noteData.title}
-                onChange={onChange} required />
+                onChange={onChange} 
+                onKeyDown={onKeyDownEnter} required />
             <br />
 
             <label className="form-label"
@@ -41,6 +50,7 @@ const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
                 내용
             </label>
             <textarea className="form-control"
+                ref={textareaRef}
                 id="content"
                 rows="10" 
                 value={noteData.content}

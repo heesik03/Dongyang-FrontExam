@@ -5,6 +5,7 @@ import useTitle from "../hooks/useTitle";
 import PageMainTitle from "../componets/PageMainTitle";
 
 function Note() {
+    const [ sortValue, setSortValue ] = useState("latest"); // 기본 최신순
     const [ noteList, setNoteList ] = useState([]);
 
     useTitle("김희식 기말 메모");
@@ -37,10 +38,16 @@ function Note() {
         <main className="container">
             <PageMainTitle title={"노트"} />
 
-            <Link to="/note/write"> 
-                <button className="btn btn-primary">작성</button>
-            </Link>   
-            <br />
+            <div className="d-flex">
+                <Link to="/note/write"> 
+                    <button className="btn btn-primary">작성</button>
+                </Link>   
+                <select className="ms-auto" value={sortValue} onChange={(e) => setSortValue(e.target.value)}>
+                    <option value="latest">최신순</option>
+                    <option value="earliest">오래된 순</option>
+                    <option value="starred">별표만</option>
+                </select>
+            </div>
             <br />
 
             <section>
