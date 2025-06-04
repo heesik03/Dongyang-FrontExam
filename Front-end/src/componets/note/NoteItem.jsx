@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const NoteItem = ({note, deleteNote}) => {
     return (
-        <li className={note.star ? "note-item-star" : "note-item"}>
+        <li className={`${note.star  ? "note-item-star" : "note-item"} pt-2`}>
             <Link to={`/note/${note.id}`}>
                 <p style={{color : note.star ? "#FFD700" : "black", fontWeight: note.star ? "bold" : "normal" }}>
                 {note.password && "🔒"} 
@@ -21,7 +21,7 @@ const NoteItem = ({note, deleteNote}) => {
                 onClick={() => deleteNote(note.id)} >
                 X
             </button>
-            <hr />
+            <hr className="mb-0" />
         </li>
     );
 }

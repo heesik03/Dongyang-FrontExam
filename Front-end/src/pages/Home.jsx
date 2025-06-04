@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import getScheduleList from "../componets/getScheduleList";
 import PageMainTitle from "../componets/PageMainTitle";
 import ArrowButton from "../componets/calendar/ArrowButton";
 import CalendarBody from "../componets/calendar/CalendarBody";
@@ -50,16 +51,6 @@ function Home() {
         setLastDay(new Date(now.getFullYear(), now.getMonth()+1, 0).getDate())
     }
 
-    const getScheduleList = async() => {
-        try {
-            const responseListData = await axios.get('http://localhost:3000/schedules');
-            setScheduleList(responseListData.data);
-        } catch (error) {
-            console.error(`getScheduleList Error : ${error}`);
-            alert("사이트 오류로 일정 불러오기에 실패했습니다.");
-        }
-    }
-
     const onSubmitSchedule = async(e) => {
         e.preventDefault();
         try {
@@ -70,7 +61,7 @@ function Home() {
                 important : schedule.isImportant
             })
             setSchedule({ description  : "", time : "", isImportant : false})
-            getScheduleList();
+            getScheduleList(setScheduleList)
         } catch (error) {
             console.error(`onSubmitSchedule Error : ${error}`);
             alert("사이트 오류로 일정 작성에 실패했습니다.");
@@ -88,7 +79,7 @@ function Home() {
     }
 
     useEffect(() => {
-        getScheduleList();
+        getScheduleList(setScheduleList)
     }, [])
 
     return (
@@ -160,7 +151,7 @@ function Home() {
                         .sort((a, b) => a.time.localeCompare(b.time)) // 시간 기준 오름차순 정렬
                         .map(item => (
                             <li key={item.id} className="schedule-item">
-                                <p>
+                                <p className="pt-1">
                                     {`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}
                                 </p>
                                 <p>
@@ -179,7 +170,7 @@ function Home() {
                                         X
                                     </button>
                                 </p>
-                                <hr />
+                                <hr className="mb-0" />
                             </li>
                         ))
                     )

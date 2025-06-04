@@ -65,6 +65,28 @@
       "time": "06:00",
       "schedule": "대통령 선거",
       "important": true
+    },
+    {
+      "id": "415d",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 4
+      },
+      "time": "10:20",
+      "schedule": "ㅁㅁㅁㅁ",
+      "important": false
+    },
+    {
+      "id": "ea80",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 4
+      },
+      "time": "10:51",
+      "schedule": "ㅁㅁㅁㅁ",
+      "important": false
     }
   ],
   "notes": [
