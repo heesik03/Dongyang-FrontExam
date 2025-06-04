@@ -1,10 +1,13 @@
 const Footer = () => {
     return (
-        <footer className="text-center py-3 mt-auto">
-            <hr />
-            <p>&copy; 2025 Kim Heesik</p>
-            <p>cka8701@gmail.com</p>
-        </footer>
+        <>
+            <br />
+            <footer className="text-center mt-auto" style={{background : "#edeef1"}}>
+                <hr className="mt-0" />
+                <p>&copy; 2025 Kim Heesik</p>
+                <p>cka8701@gmail.com</p>
+            </footer>
+        </>
     )
 }
 

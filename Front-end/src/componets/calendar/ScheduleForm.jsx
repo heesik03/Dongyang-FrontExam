@@ -16,7 +16,7 @@ const ScheduleForm = ({onSubmit, currentDay, schedule, setSchedule}) => {
 
     return (
         <form onSubmit={(e) => onSubmit(e)}>
-            <p style={{fontSize : "1.2em"}}>{`${currentDay.year}년 ${currentDay.month}월 ${currentDay.day}일`}</p>
+            <p style={{fontWeight : "bold", fontSize : "1.2em", color : "#0093ff"}}>{`${currentDay.year}년 ${currentDay.month}월 ${currentDay.day}일`}</p>
             
             <label className="form-label"
                 htmlFor="time" >

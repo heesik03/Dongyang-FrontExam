@@ -25,6 +25,7 @@ function Home() {
     const weekList = ['일', '월', '화', '수', '목', '금', '토'];
 
     const changeCurrentMonth = move => {
+        console.log(currentDay.day)
         let year = currentDay.year;
         let month = currentDay.month;
 
@@ -102,11 +103,10 @@ function Home() {
                             </tr>
                             </thead>
                             <CalendarBody
-                            lastDay={lastDay}
-                            firstWeek={firstWeek}
-                            currentDay={currentDay}
-                            setCurrentDay={setCurrentDay}
-                            />
+                                lastDay={lastDay}
+                                firstWeek={firstWeek}
+                                currentDay={currentDay}
+                                setCurrentDay={setCurrentDay} />
                         </table>
 
                         <div className="my-3 d-flex gap-2">
