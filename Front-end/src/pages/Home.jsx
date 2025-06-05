@@ -80,7 +80,7 @@ function Home() {
     }
 
     useEffect(() => {
-        getScheduleList(setScheduleList)
+        getScheduleList(setScheduleList);
     }, [])
 
     return (
@@ -123,8 +123,7 @@ function Home() {
                             onSubmit={onSubmitSchedule}
                             currentDay={currentDay}
                             schedule={schedule}
-                            setSchedule={setSchedule}
-                        />
+                            setSchedule={setSchedule} />
                     </aside>
                 </div>
             </section>

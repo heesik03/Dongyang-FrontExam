@@ -76,6 +76,17 @@
       "time": "10:51",
       "schedule": "ㅁㅁㅁㅁ",
       "important": false
+    },
+    {
+      "id": "e5d2",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 5
+      },
+      "time": "10:00",
+      "schedule": "iot 기말 프로젝트",
+      "important": true
     }
   ],
   "notes": [

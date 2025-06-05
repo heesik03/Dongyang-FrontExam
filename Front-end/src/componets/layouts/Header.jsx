@@ -73,8 +73,8 @@ const Header = () => {
                 }
                 </ul>
                 <div>
-                    <button className={`${isAlarm ? "bi bi-bell-fill" : "bi bi-bell"} ms-auto`} 
-                    style={{fontSize : "1.2em"}}
+                    <i className={`${isAlarm ? "alarm-active bi bi-bell-fill" : "bi bi-bell"} ms-auto`} 
+                    style={{fontSize : "1.8em"}}
                     onClick={() => setIsClick((click) => !click)} />
                     <ul className="alarm-page position-absolute end-0 z-3">
                     {
