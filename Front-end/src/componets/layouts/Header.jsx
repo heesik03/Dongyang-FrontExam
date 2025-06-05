@@ -20,6 +20,13 @@ const Header = () => {
         },
     ]
 
+    const clickBell = () => {
+        setIsClick((click) => !click);
+        if (isAlarm) {
+            setIsAlarm(false) // 읽음 처리
+        }
+    }
+
     useEffect(() => {
         const intervalTime = 60000;
 
@@ -55,7 +62,7 @@ const Header = () => {
             ;
         });
 
-        if (alarmSchedule.length!==0) {
+        if (alarmSchedule.length!==0 && alarmSchedule.length !== alarmList.length) {
             setAlarmList(alarmSchedule)
             setIsAlarm(true)
         }
@@ -64,7 +71,7 @@ const Header = () => {
 
     return (
         <header>
-            <nav className="navbar container d-flex mt-1">
+            <nav className="navbar container d-flex">
                 <ul className="d-flex">
                 {
                     headerList.map( list => (
@@ -75,7 +82,7 @@ const Header = () => {
                 <div>
                     <i className={`${isAlarm ? "alarm-active bi bi-bell-fill" : "bi bi-bell"} ms-auto`} 
                     style={{fontSize : "1.8em"}}
-                    onClick={() => setIsClick((click) => !click)} />
+                    onClick={clickBell} />
                     <ul className="alarm-page position-absolute end-0 z-3">
                     {
                         isClick && (

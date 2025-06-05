@@ -12,17 +12,6 @@
       "important": false
     },
     {
-      "id": "641e",
-      "currentDay": {
-        "year": 2025,
-        "month": 5,
-        "day": 31
-      },
-      "time": "00:00",
-      "schedule": "알바",
-      "important": false
-    },
-    {
       "id": "2071",
       "currentDay": {
         "year": 2025,
@@ -87,6 +76,28 @@
       "time": "10:00",
       "schedule": "iot 기말 프로젝트",
       "important": true
+    },
+    {
+      "id": "08ac",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 5
+      },
+      "time": "14:00",
+      "schedule": "웹프런트엔드실습",
+      "important": false
+    },
+    {
+      "id": "1c90",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 5
+      },
+      "time": "15:40",
+      "schedule": "ㅁㅁㅁㅁ",
+      "important": false
     }
   ],
   "notes": [
@@ -108,11 +119,11 @@
     },
     {
       "id": "ac88",
-      "title": "비밀풀기",
-      "content": "풀기",
+      "title": "비밀번호 해제",
+      "content": "해제",
       "password": null,
       "star": false,
-      "timestamp": "2025. 5. 22. 오후 3:21:44"
+      "timestamp": "2025. 6. 5. 오후 2:16:04"
     },
     {
       "id": "c3b4",

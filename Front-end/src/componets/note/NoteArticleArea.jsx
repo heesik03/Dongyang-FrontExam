@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const NoteArticleArea = ({title, timestamp, content, star, patch}) => {
+const NoteArticleArea = ({title, timestamp, content, star, patch, id}) => {
     const buttonClassName = "btn btn-outline-warning btn-lg ms-auto";
 
     return (
@@ -16,6 +17,12 @@ const NoteArticleArea = ({title, timestamp, content, star, patch}) => {
             <hr />
             <p id="read-content">{content}</p>
             <hr />
+            <Link to={`/note/update/${id}`}>
+                <button className="btn btn-outline-primary"
+                    type="button">
+                    수정
+                </button>
+            </Link>
         </article>
     )
 }

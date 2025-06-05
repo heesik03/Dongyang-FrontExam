@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import useTitle from "../hooks/useTitle";
 import PageMainTitle from "../componets/PageMainTitle";
-import NotePasswordArea from "../componets/note/NotePasswordArea";
+import NotePasswordCheckArea from "../componets/note/NotePasswordCheckArea";
 import NoteArticleArea from "../componets/note/NoteArticleArea";
 
 function NoteRead() {
     const [ note, setNote ] = useState([]);
     const [ notePassword , setNotePassword ] = useState("");
+    const [ isPassword, setIsPassword ] = useState(false);
     const [ isStar, setIsStar ] = useState(note[0]?.star);
     const { id } = useParams();
 
@@ -55,31 +56,30 @@ function NoteRead() {
             <PageMainTitle title={"메모 읽기"} />
         {
             note[0]?.password ? ( // 비밀번호가 존재할 경우
-                note[0].password === notePassword ? ( // 비밀번호 체크
+                isPassword ? ( // 비밀번호가 맞았는지 확인
                     <NoteArticleArea
                         title={note[0]?.title}
                         timestamp={note[0]?.timestamp}
                         content={note[0]?.content}
                         star={isStar}
                         patch={patchStar}
+                        id={id}
                     />
-                    ) : <NotePasswordArea id={"check-password"} password={notePassword} onChange={onChangePassword} />
-            ) : (
+                    ) : <NotePasswordCheckArea notePassword={notePassword} 
+                            onChangePassword={onChangePassword}
+                            lockPassword={note[0].password}
+                            setIsPassword={setIsPassword} />
+            ) : ( // 비밀번호가 존재하지 않을 시 그대로 출력
                 <NoteArticleArea
                     title={note[0]?.title}
                     timestamp={note[0]?.timestamp}
                     content={note[0]?.content}
                     star={isStar}
                     patch={patchStar}
+                    id={id}
                 />
             )
         }
-            <Link to={`/note/update/${id}`}>
-                <button className="btn btn-outline-primary btn-sm"
-                    type="button">
-                    수정
-                </button>
-            </Link>
         </main>
     )
 }
