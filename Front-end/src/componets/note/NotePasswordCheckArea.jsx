@@ -11,7 +11,8 @@ const NotePasswordCheckArea = ({notePassword, onChangePassword, lockPassword, se
     return (
         <form>
             <NotePasswordArea id={"check-password"} password={notePassword} onChange={onChangePassword} />
-            <button type="submit" 
+            <button className="btn btn-outline-info"
+                type="submit" 
                 onClick={(e) => checkPassword(e)}>
                     확인
             </button>

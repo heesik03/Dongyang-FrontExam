@@ -87,17 +87,6 @@
       "time": "14:00",
       "schedule": "웹프런트엔드실습",
       "important": false
-    },
-    {
-      "id": "1c90",
-      "currentDay": {
-        "year": 2025,
-        "month": 6,
-        "day": 5
-      },
-      "time": "15:40",
-      "schedule": "ㅁㅁㅁㅁ",
-      "important": false
     }
   ],
   "notes": [
@@ -152,10 +141,10 @@
     {
       "id": "1376",
       "title": "15자이상이되면어떻게될지너무궁금해서테스트를",
-      "content": "15자이상이되면어떻게될지너무궁금해서테스트를해보겠습니다",
-      "password": null,
+      "content": "15자이상이되면어떻게될지너무궁금해서테스트를해보겠습니다,",
+      "password": "1111",
       "star": false,
-      "timestamp": "2025. 5. 26. 오전 9:24:32"
+      "timestamp": "2025. 6. 6. 오전 9:03:45"
     },
     {
       "id": "3cf1",
