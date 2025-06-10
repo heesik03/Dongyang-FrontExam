@@ -28,7 +28,7 @@ const Header = () => {
     }
 
     useEffect(() => {
-        const intervalTime = 60000;
+        const intervalTime = 10000;
 
         getScheduleList(setScheduleList);
 
@@ -62,9 +62,11 @@ const Header = () => {
             ;
         });
 
-        if (alarmSchedule.length!==0 && alarmSchedule.length !== alarmList.length) {
-            setAlarmList(alarmSchedule)
-            setIsAlarm(true)
+        if (alarmSchedule.length !== alarmList.length) {
+            setAlarmList(alarmSchedule);             
+            if (alarmSchedule.length > alarmList.length) {
+                setIsAlarm(true);                    
+            }
         }
     }, [scheduleList]);
 
@@ -87,18 +89,18 @@ const Header = () => {
                     {
                         isClick && (
                             alarmList.length === 0 ? <li>일정이 없습니다.</li> 
-                            : alarmList.map( item => (
+                            : alarmList.sort((a, b) => a.time.localeCompare(b.time))
+                                .map( (item, index ) => (
                                 <li key={item.id}>
-                                    <p className="mb-0">
+                                    <p className="alarm-item py-1">
                                         <span style={{ 
                                             color: item.important ? "#ec5353" : "black", 
                                             fontWeight: item.important ? "bold" : "normal" 
                                         }}>
                                             {item.important && "중요!  "}
                                         </span>
-                                        {item.time} {item.schedule}
+                                        &nbsp; {`${index+1}. ${item.time} ${item.schedule}`}
                                     </p>
-                                    <hr className="mt-0 mb-1" />
                                 </li>
                             ))
                         )

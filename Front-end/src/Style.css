@@ -18,15 +18,22 @@ ul {
 }
 
 .alarm-page { /* 알림 페이지 */
-  background-color: #E2E2E2;
-  width: 18em; 
+  background-color: #f5f6f8;
+  width: 20em; 
   font-size : 1.1em;
+}
+
+.alarm-item {
+  border: 1px solid var(--main-blue);   /* hover 시 화면 움직임 방지 용 */
+  border-radius: 8px; 
 }
 
 .arrow-button { /* 캘린더 화살표 버튼 */
   border: none;
   background: none;
   font-size : 2.2em;
+  border: 1px solid transparent;   /* hover 시 화면 움직임 방지 용 */
+  border-radius: 8px; 
 }
 
 #read-content { /* 노트 읽기 페이지 */
@@ -52,11 +59,6 @@ header li:hover {
     text-decoration : underline;
     text-decoration-thickness: 3px;
     text-decoration-color : #000080;
-}
-
-.arrow-button {
-    border: 1px solid transparent;   /* hover 시 화면 움직임 방지 용 */
-    border-radius: 8px; 
 }
 
 .arrow-button:hover {
