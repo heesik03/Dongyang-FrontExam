@@ -32,7 +32,7 @@ const Header = () => {
 
         getScheduleList(setScheduleList);
 
-        const interval = setInterval(() => {
+        const interval = setInterval(() => { // 10초다 알림 목록 업데이트
             getScheduleList(setScheduleList);
         }, intervalTime); 
 
@@ -49,12 +49,12 @@ const Header = () => {
         scheduleList.forEach(item => {
             const [itemHour, itemMinute] = item.time.split(':').map(Number);
 
-            const isSameDate =
+            const isSameDate = // 현재 날짜와 같고
                 item.currentDay.year === now.getFullYear() &&
                 item.currentDay.month === now.getMonth() + 1 &&
                 item.currentDay.day === now.getDate();
 
-            const isEqualTime =
+            const isEqualTime = // 현재 시간보다 적거나, 시간이 같고, 분이 작거나 같은 일정
                 itemHour < nowHour || (itemHour === nowHour && itemMinute <= nowMinute);
 
             isSameDate && isEqualTime &&
@@ -62,9 +62,9 @@ const Header = () => {
             ;
         });
 
-        if (alarmSchedule.length !== alarmList.length) {
-            setAlarmList(alarmSchedule);             
-            if (alarmSchedule.length > alarmList.length) {
+        if (alarmSchedule.length !== alarmList.length) { // 실시간 일정과 저장되있는 알람 리스트의 길이가 다르다(변화가 생겼다)면
+            setAlarmList(alarmSchedule); // 알람 리스트 갱신
+            if (alarmSchedule.length > alarmList.length) { // 일정이 추가되었다면
                 setIsAlarm(true);                    
             }
         }

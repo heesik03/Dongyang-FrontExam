@@ -25,11 +25,11 @@ function Home() {
     const weekList = ['일', '월', '화', '수', '목', '금', '토'];
 
     const changeCurrentMonth = move => {
-        console.log(currentDay.day)
+
         let year = currentDay.year;
         let month = currentDay.month;
 
-        move ? month-=1 : month+=1;
+        move ? month-=1 : month+=1; 
         if (month<=0) { // 년도 내림
             year-=1;
             month=12;
@@ -42,7 +42,7 @@ function Home() {
         setLastDay(new Date(year, month, 0).getDate())
     }
 
-    const rollbackMonth = () => {
+    const rollbackMonth = () => { // 현재 월로 되돌리기
         setCurrentDay({
             year : now.getFullYear(),
             month : now.getMonth()+1,
@@ -72,7 +72,7 @@ function Home() {
     const deleteSchedule = async(id) => {
         try {
             await axios.delete(`http://localhost:3000/schedules/${id}`);
-            setScheduleList(scheduleList.filter(item => item.id !== id));
+            setScheduleList(scheduleList.filter(item => item.id !== id)); // 일정 목록 업데이트
         } catch (error) {
             console.error(`deleteSchedule Error : ${error}`);
             alert("사이트 오류로 일정 삭제에 실패했습니다.");
@@ -142,7 +142,7 @@ function Home() {
                         </li>
                     ) : (
                     scheduleList
-                        .filter(item =>
+                        .filter(item => // 선택한 날짜와 같은 날짜의 일정을 필터링
                         item.currentDay.year === currentDay.year &&
                         item.currentDay.month === currentDay.month &&
                         item.currentDay.day === currentDay.day
@@ -160,7 +160,7 @@ function Home() {
                                     }}>
                                         {item.important && "중요!  "}
                                     </span>
-                                    {item.time} {item.schedule}
+                                    {`${item.time} ${item.schedule}`}
                                     <button
                                         className="btn btn-outline-danger btn-sm ms-2"
                                         type="button"

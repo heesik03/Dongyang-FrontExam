@@ -24,7 +24,7 @@ ul {
 }
 
 .alarm-item {
-  border: 1px solid var(--main-blue);   /* hover 시 화면 움직임 방지 용 */
+  border: 1px solid var(--main-blue);   
   border-radius: 8px; 
 }
 

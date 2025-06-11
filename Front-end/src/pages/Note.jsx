@@ -44,7 +44,7 @@ function Note() {
         }
     }
 
-    const getNoteList = async() => { // npx json-server db.json
+    const getNoteList = async() => {
         try {
             const responseListData = await axios.get('http://localhost:3000/notes');
             setOriginNoteList([...responseListData.data].sort((a, b) => toDate(b.timestamp) - toDate(a.timestamp))) // 바뀌지 않는 원본 생성

@@ -87,6 +87,17 @@
       "time": "14:00",
       "schedule": "웹프런트엔드실습",
       "important": false
+    },
+    {
+      "id": "6efc",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 13
+      },
+      "time": "10:00",
+      "schedule": "머리 자르기",
+      "important": true
     }
   ],
   "notes": [
@@ -161,6 +172,14 @@
       "password": null,
       "star": false,
       "timestamp": "2025. 6. 2. 오후 2:01:12"
+    },
+    {
+      "id": "1ae4",
+      "title": "내일 월급",
+      "content": "내일 알바 월급!",
+      "password": null,
+      "star": true,
+      "timestamp": "2025. 6. 11. 오후 4:59:18"
     }
   ]
 }
