@@ -5,6 +5,7 @@ import PageMainTitle from "../componets/PageMainTitle";
 import ArrowButton from "../componets/calendar/ArrowButton";
 import CalendarBody from "../componets/calendar/CalendarBody";
 import ScheduleForm from "../componets/calendar/ScheduleForm";
+import DayStatus from "../componets/calendar/DayStatus";
 
 function Home() {
     const now = new Date();
@@ -16,7 +17,8 @@ function Home() {
     const [ schedule, setSchedule ] = useState({ // 일정
         description  : "",
         time : "",
-        isImportant : false
+        isImportant : false,
+        isBirthday : false
     })
     const [ firstWeek, setFirstWeek ] = useState(new Date(currentDay.year, currentDay.month-1, 1).getDay()); // 첫날의 요일
     const [ lastDay, setLastDay ] = useState(new Date(currentDay.year, currentDay.month, 0).getDate()); // 선택한 월의 말일
@@ -57,11 +59,12 @@ function Home() {
         try {
             await axios.post('http://localhost:3000/schedules', {
                 currentDay,
-                time : schedule.time,
+                time : schedule.isBirthday ? "00:00" : schedule.time, // 생일이라면 기본 00:00
                 schedule : schedule.description,
-                important : schedule.isImportant
+                important : schedule.isBirthday ? true : schedule.isImportant, // 생일이라면 기본 중요
+                birthday : schedule.isBirthday
             })
-            setSchedule({ description  : "", time : "", isImportant : false})
+            setSchedule({ description  : "", time : "", isImportant : false, isBirthday : false})
             getScheduleList(setScheduleList)
         } catch (error) {
             console.error(`onSubmitSchedule Error : ${error}`);
@@ -90,6 +93,8 @@ function Home() {
             <h4>{`🗓 ${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일`}</h4>
             <br />
 
+            <DayStatus now={now} scheduleList={scheduleList} />
+
             <section className="container my-3">
                 <p className="fw-bold" style={{fontSize : "1.4em"}}>{`${currentDay.year}년 ${currentDay.month}월`}</p>
                 <div className="row">
@@ -97,12 +102,13 @@ function Home() {
                         <table className="table" style={{ fontSize: "1.2em" }}>
                             <thead>
                             <tr>
-                                {weekList.map(week => (
+                                {weekList.map(week => ( // 일~토 map으로 출력
                                 <th key={week}>{week}</th>
                                 ))}
                             </tr>
                             </thead>
-                            <CalendarBody
+                            {/* 캘린더 */}
+                            <CalendarBody 
                                 lastDay={lastDay}
                                 firstWeek={firstWeek}
                                 currentDay={currentDay}
@@ -133,7 +139,7 @@ function Home() {
                 <ul>
                 {
                     scheduleList.filter(item =>
-                    item.currentDay.year === currentDay.year &&
+                    (item.currentDay.year === currentDay.year || item.birthday) &&
                     item.currentDay.month === currentDay.month &&
                     item.currentDay.day === currentDay.day
                     ).length === 0 ? (
@@ -143,7 +149,7 @@ function Home() {
                     ) : (
                     scheduleList
                         .filter(item => // 선택한 날짜와 같은 날짜의 일정을 필터링
-                        item.currentDay.year === currentDay.year &&
+                        (item.currentDay.year === currentDay.year || item.birthday) && // 생일일 경우엔 매년 일정 보여줌
                         item.currentDay.month === currentDay.month &&
                         item.currentDay.day === currentDay.day
                         )
@@ -151,7 +157,7 @@ function Home() {
                         .map(item => (
                             <li key={item.id} className="schedule-item">
                                 <p className="pt-1">
-                                    {`${item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}
+                                    {`${item.birthday ? currentDay.year : item.currentDay.year}년 ${item.currentDay.month}월 ${item.currentDay.day}일`}
                                 </p>
                                 <p>
                                     <span style={{ 

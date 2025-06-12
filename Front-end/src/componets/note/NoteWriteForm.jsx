@@ -40,6 +40,7 @@ const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
                 ref={inputRef}
                 type="text"
                 id="title"
+                placeholder="제목을 작성하세요"
                 value={noteData.title}
                 onChange={onChange} 
                 onKeyDown={onKeyDownEnter} required />
@@ -53,6 +54,7 @@ const NoteWriteForm = ({onSubmit, noteData, setNoteData }) => {
                 ref={textareaRef}
                 id="content"
                 rows="10" 
+                placeholder="내용을 작성하세요"
                 value={noteData.content}
                 onChange={onChange} required />
             <br />

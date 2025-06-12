@@ -9,7 +9,8 @@
       },
       "time": "10:00",
       "schedule": "sqld 시험",
-      "important": false
+      "important": false,
+      "birthday": false
     },
     {
       "id": "2071",
@@ -20,7 +21,8 @@
       },
       "time": "00:00",
       "schedule": "종강",
-      "important": false
+      "important": false,
+      "birthday": false
     },
     {
       "id": "07a2",
@@ -31,7 +33,8 @@
       },
       "time": "00:00",
       "schedule": "6월의 시작",
-      "important": false
+      "important": false,
+      "birthday": false
     },
     {
       "id": "2860",
@@ -42,7 +45,8 @@
       },
       "time": "10:35",
       "schedule": "프런트엔드실습",
-      "important": true
+      "important": true,
+      "birthday": false
     },
     {
       "id": "3455",
@@ -53,7 +57,8 @@
       },
       "time": "06:00",
       "schedule": "대통령 선거",
-      "important": true
+      "important": true,
+      "birthday": false
     },
     {
       "id": "ea80",
@@ -64,7 +69,8 @@
       },
       "time": "10:51",
       "schedule": "ㅁㅁㅁㅁ",
-      "important": false
+      "important": false,
+      "birthday": false
     },
     {
       "id": "e5d2",
@@ -75,7 +81,8 @@
       },
       "time": "10:00",
       "schedule": "iot 기말 프로젝트",
-      "important": true
+      "important": true,
+      "birthday": false
     },
     {
       "id": "08ac",
@@ -86,7 +93,8 @@
       },
       "time": "14:00",
       "schedule": "웹프런트엔드실습",
-      "important": false
+      "important": false,
+      "birthday": false
     },
     {
       "id": "6efc",
@@ -97,7 +105,32 @@
       },
       "time": "10:00",
       "schedule": "머리 자르기",
-      "important": true
+      "important": true,
+      "birthday": false
+    },
+    {
+      "id": "564c",
+      "currentDay": {
+        "year": 2025,
+        "month": 8,
+        "day": 7
+      },
+      "time": "00:00",
+      "schedule": "내 생일",
+      "important": true,
+      "birthday": true
+    },
+    {
+      "id": "d1d0",
+      "currentDay": {
+        "year": 2025,
+        "month": 6,
+        "day": 12
+      },
+      "time": "14:00",
+      "schedule": "웹프런트엔드",
+      "important": true,
+      "birthday": false
     }
   ],
   "notes": [

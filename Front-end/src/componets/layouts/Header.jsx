@@ -97,7 +97,7 @@ const Header = () => {
                                             color: item.important ? "#ec5353" : "black", 
                                             fontWeight: item.important ? "bold" : "normal" 
                                         }}>
-                                            {item.important && "중요!  "}
+                                            {item.important && "중요!"}
                                         </span>
                                         &nbsp; {`${index+1}. ${item.time} ${item.schedule}`}
                                     </p>
