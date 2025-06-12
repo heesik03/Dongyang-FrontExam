@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useTitle from "../hooks/useTitle"
 import getScheduleList from "../componets/getScheduleList";
 import PageMainTitle from "../componets/PageMainTitle";
 import ArrowButton from "../componets/calendar/ArrowButton";
@@ -81,6 +82,8 @@ function Home() {
             alert("사이트 오류로 일정 삭제에 실패했습니다.");
         }
     }
+
+    useTitle("나만의 웹사이트");
 
     useEffect(() => {
         getScheduleList(setScheduleList);
